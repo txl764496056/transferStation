@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>材质THREE.MeshDepthMaterial</title>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+</head>
+<body onload="draw();">
+	<script src="js/three.js"></script>
+	<!-- <script src="js/three-v60.js"></script> -->
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/stats.min.js"></script>
+	<script src="js/dat.gui.min.js"></script>
+	<script>
+
+		// 渲染器
+		var renderer,w,h;
+		function initRenderer(){
+			w = window.innerWidth;
+			h = window.innerHeight;
+			renderer = new THREE.WebGLRenderer({
+				antialias:true
+			});
+			renderer.setSize(w,h);
+			renderer.setClearColor(0x000000);
+			document.body.appendChild(renderer.domElement);
+		}
+
+		// 场景
+		var scene;
+		function initScene(){
+			scene = new THREE.Scene();
+		}
+
+		// 相机 
+		var camera;
+		function initCamera(){
+			camera = new THREE.PerspectiveCamera(45,w/h,1,1000);
+			camera.position.set(0,0,600);
+			// scene.add(camera);
+		}
+
+		// 灯光
+		// 其外观不是由光照或某个材质属性决定的，而是由物体到摄像机的距离决定的。
+		function initLight(){
+			/*var light1 = new THREE.AmbientLight(0x404040);
+			scene.add(light1);
+
+			var light2 = new THREE.DirectionalLight(0xffffff);
+			light2.position.set(100,100,100);
+			scene.add(light2);*/
+		}
+
+		// 模型
+		var cube;
+		function initModel(){
+
+			// var material = new THREE.MeshDepthMaterial();
+			var material = new THREE.MeshBasicMaterial({color:0x00d0d0});
+			var s = 10;
+			var geometry = new THREE.CubeGeometry(s,s,s);
+
+			for(var i=0;i<2000;i++){
+				
+				cube = new THREE.Mesh(geometry,material);
+				
+				// 位置
+				cube.position.x = 800*(2.0*Math.random()-1.0);
+				cube.position.y = 800*(2.0*Math.random()-1.0);
+				cube.position.z = 200*(2.0*Math.random()-1.0);
+
+				// 旋转角度
+				cube.rotation.x = Math.random()*Math.PI;
+				cube.rotation.y = Math.random()*Math.PI;
+				cube.rotation.z = Math.random()*Math.PI;
+
+				scene.add(cube);
+
+			}
+			
+		}
+
+		// 渲染
+		function render(){
+			renderer.render(scene,camera);
+		}
+
+		function animate(){
+			controls.update();
+			stats.update();
+			render();
+			requestAnimationFrame(animate);
+		}
+
+// --------------------------------------- gui插件
+		
+
+// ---------------------------------------- 交互插件
+		// 用户交互插件，按住鼠标左键旋转，右键平移，滚轮缩放
+		var controls;
+		function initControls(){
+			
+			controls = new THREE.OrbitControls(camera,renderer.domElement);
+
+			controls.enableDamping = true;
+
+			controls.autoRotate = true;
+
+		}
+
+// ----------------------------------------- 性能插件
+		var stats;
+		function initStats(){
+			stats = new Stats();
+			document.body.appendChild(stats.dom);
+		}
+
+		// 辅助工具
+		function initHelper(){
+			var helper = new THREE.AxisHelper(10);
+			scene.add(helper);
+		}
+
+		function draw(){
+			initRenderer();
+			initScene();
+			initCamera();
+			initLight();
+			initModel();
+			initHelper();
+
+			initControls();
+			initStats();
+
+			animate();
+		}
+
+	</script>
+</body>
+</html>

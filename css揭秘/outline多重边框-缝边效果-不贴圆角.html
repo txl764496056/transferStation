@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>outline多重边框-缝边效果-不贴圆角</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px 0;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		h2 span{color:#AF0023;font-weight: bold;}
+		h2 p{font-size:16px;margin-top: 10px;}
+
+		.box{width:1200px;margin:0 auto;border:2px solid #fff;padding:20px 0;}
+		/*标题样式*/
+		.box h3{padding:10px 30px;background-color:#fafafa;box-shadow: 0 0 3px #999;margin:20px 0 30px 0;}
+		.box h3 b {font-weight:normal;font-size:16px;color:#555;margin-left: 10px;}
+		/*所有轮廓样式*/
+		.outline{width:310px;height: 140px;background-color: #694646;margin:40px;display: inline-block;vertical-align: top;padding:10px;font-size:14px;color:#d7b6b6;}
+		.outline b{color:#fff;}
+		.outline1{outline:#fff dashed 2px;outline-offset:-10px;padding:15px;}
+		.outline2{outline:#38a4c5 dashed 2px;outline-offset:10px;padding:15px;}
+		.outline3{border-radius: 50px;outline:#38a4c5 solid 5px;padding:15px;}
+
+		/*表格样式*/
+		.arg{margin-top: 50px;background-color: #fff;}
+		table{color:#666;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;width:90%;margin:20px;}
+		table th{font-weight: normal;}
+		table th span{color:#ff0000;}
+		table td,table th{padding:10px;border-left:1px solid #ddd;border-top:1px solid #ddd;text-align:left;}
+		table td:first-of-type{width:15%;}
+
+		/* 文字说明样式 */
+		.note{margin:20px;}
+		.note li{list-style: none;}
+		.note li:before{content:"";width:10px;height: 10px;background-color: #1d9213;display: inline-block;margin-right: 5px;vertical-align: 2px;}
+	</style>
+</head>
+<body>
+	<h2>
+		outline多重边框-缝边效果-不贴圆角
+	</h2>
+
+	<div class="box">
+		<div class="outline outline1"><b>裁缝效果，</b>偏移 -10px<br/>outline:#fff dashed 2px;<br/>outline-offset:-10px;</div>
+		<div class="outline outline2"><b>裁缝效果，</b>偏移 10px<br/>outline:#38a4c5 dashed 2px;<br/>outline-offset:10px;</div>
+		<div class="outline outline3"><b>不贴圆角</b><br/>border-radius:50px;<br/>outline:#38a4c5 solid 5px;</div>
+		<h3>注意</h3>
+		<ul class="note">
+			<li>ouline边框会在盒子最外层，通过outline-offset，移动它的位置</li>
+		</ul>
+	</div>
+
+	<div class="arg box">
+		<p>参数：</p>
+		<table cellspacing="0">
+			<tr>
+				<td>outline </td>
+				<td>在一个声明中设置所有的轮廓属性</td>
+				<td>outline:outline-color outline-style outline-width;<br/>outline:inherit;</td>
+			</tr>
+			<tr>
+				<td>outline-color </td>
+				<td>设置轮廓的颜色</td>
+				<td>color-name<br/>hex-number<br/>rgb-number<br/>invert<br/>inherit</td>
+			</tr>
+			<tr>
+				<td>outline-style </td>
+				<td>设置轮廓的样式</td>
+				<td>none<br/>dotted<br/>dashed<br/>solid<br/>double<br/>groove<br/>ridge<br/>inset<br/>outset<br/>inherit</td>
+			</tr>
+			<tr style="color:#ff0000;">
+				<td>outline-offset </td>
+				<td>设置轮廓的偏移</td>
+				<td>数值，例如：5px 、 -5px</td>
+			</tr>
+			<tr>
+				<td>outline-width </td>
+				<td>设置轮廓的宽度</td>
+				<td>thin<br/>medium<br/>thick<br/>length(数值)<br/>inherit</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

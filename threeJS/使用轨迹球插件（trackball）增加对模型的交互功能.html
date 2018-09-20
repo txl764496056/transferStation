@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用轨迹球插件（trackball）增加对模型的交互功能</title>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+</head>
+<body onload="draw()">
+	
+	<script src="js/three.js"></script>
+	<script src="js/TrackballControls.js"></script>
+	<script src="js/stats.min.js"></script>
+	<script>
+		
+		var renderer,w,h;
+		//渲染器
+		function initRender(){
+
+			w = window.innerWidth;
+			h = window.innerHeight;
+			renderer = new THREE.WebGLRenderer({
+				antialias:true
+			});
+			renderer.setSize(w,h);
+			document.body.appendChild(renderer.domElement);
+		}
+
+		// 相机
+		var camera;
+		function initCamera(){
+			camera = new THREE.PerspectiveCamera(45,w/h,1,1000);
+			camera.position.set(0,0,400);
+		}
+
+		// 场景
+		var sence;
+		function initSence(){
+			sence = new THREE.Scene();
+		}
+
+		// 灯光
+		function initLight(){
+			var light1 = new THREE.AmbientLight(0x404040);
+			sence.add(light1);
+
+			var light2 = new THREE.DirectionalLight(0xffffff);
+			light2.position.set(100,100,100);
+			sence.add(light2);
+		}
+
+		// 模型
+		var cube;
+		function initModel(){
+			var map = new THREE.TextureLoader().load("images/timg.jpg");
+			var material = new THREE.MeshLambertMaterial({map:map});
+
+			var geometry = new THREE.CubeGeometry(100,100,100);
+			cube = new THREE.Mesh(geometry,material);
+
+			sence.add(cube);
+		}
+
+		// 渲染
+		function render(){
+			renderer.render(sence,camera);
+		}
+// ----------------------------------------------------------------- 交互插件
+		// 用户交互插件 鼠标左键按住旋转，右键平移，滚轮缩放
+		var controls;
+		function initControls(){
+
+			controls = new THREE.TrackballControls(camera);
+
+			// 旋转速度
+			controls.rotateSpeed = 5;
+
+			// 变焦速度
+			controls.zoomSpeed = 3;
+
+			// 平移速度
+			controls.panSeed = 0.8;
+
+			// 是否不变焦
+			controls.noZoom = false;
+
+			// 是否不平移
+			controls.noPan = false;
+
+			// 是否开启移动性惯性
+			controls.staticMoving = false;
+
+			// 动态阻尼系数，就是灵敏度
+			controls.dynamicDampingFactor = 0.3;
+
+			controls.addEventListener('change',render);
+
+		}
+// --------------------------------------------------------------- 性能插件
+		var stats;
+		function initStats(){
+			stats = new Stats();
+			document.body.appendChild(stats.dom);
+		}
+
+		function animate(){
+
+			// 更新控制器
+			controls.update();
+			render();
+			
+			// 更新性能插件
+			stats.update();
+
+			requestAnimationFrame(animate);
+
+		}
+
+
+		function draw(){
+			initRender();
+			initSence();
+			initCamera();
+			initLight();
+			initModel();
+			render();
+			
+			initControls();
+			initStats();
+
+			animate();
+		}
+
+	</script>
+</body>
+</html>

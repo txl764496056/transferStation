@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>切角效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:14px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+
+		.demo{width:330px;height: 150px;background-color: #58a;margin:25px;color:#fff;display:inline-block;vertical-align:top;padding:10px;}
+		.demo1{background:linear-gradient(-45deg,transparent 15px,#58a 0);line-height: 130px;text-align:center;}
+		.demo2{background:linear-gradient(-45deg,transparent 15px,#58a 0) right,linear-gradient(45deg,transparent 15px,#58a 0) left;background-size:50% 100%;background-repeat:no-repeat;}
+		.demo3{background:linear-gradient(-45deg,transparent 15px,#58a 0) right bottom,linear-gradient(45deg,transparent 15px,#58a 0) left bottom,linear-gradient(-135deg,transparent 15px,#58a 0) right top,linear-gradient(135deg,transparent 15px,#58a 0) left top;background-size:50% 50%;background-repeat:no-repeat;}
+		.demo4{background:radial-gradient(circle at top left,transparent 30px,#58a 0) top left,radial-gradient(circle at bottom left,transparent 30px,#58a 0) bottom left;background-size:100% 50%;background-repeat:no-repeat;text-align:center;line-height: 130px;}
+		.demo5{background:radial-gradient(circle at top left,transparent 30px,#58a 0) top left,radial-gradient(circle at bottom left,transparent 30px,#58a 0) bottom left,radial-gradient(circle at top right,transparent 30px,#58a 0) top right,radial-gradient(circle at bottom right,transparent 30px,#58a 0) bottom right;background-size:50% 50%;background-repeat:no-repeat;text-align:center;line-height: 130px;}
+		.demo6{line-height: normal;padding:10px;}
+		.demo7{border:20px solid #58a;background:#58a;background-clip:padding-box;}
+		.demo7-1{border-image:10 url('data:image/svg+xml,<svg width="30" height="30" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><polygon points="0,10 10,0 20,0 30,10 30,20 20,30 10,30 0,20 0,10" style="fill:#E8DBA9"></polygon></svg>');}
+		.demo7-2{border-image:10 url('data:image/svg+xml,<svg width="30" height="30" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><polygon points="0,10 10,0 20,0 30,10 30,20 20,30 10,30 0,20 0,10" style="fill:#58a"></polygon></svg>');}
+		.demo8{background:radial-gradient(#7dbbe3,transparent),#58a;clip-path:polygon(20px 0,calc(100% - 20px) 0,100% 20px,100% calc(100% - 20px),calc(100% - 20px) 100%,20px 100%,0 calc(100% - 20px),0 20px);text-align:center;line-height: 130px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>切角效果</h2>
+		<h3>利用渐变实现<span>加了background-color是在浏览器不支持渐变的情况下，有一个纯色背景</span></h3>
+		<div class="demo demo1">一个切角</div>
+		<div class="demo demo2">2个切角，2个渐变各站背景一半，避免切角处颜色相互叠加</div>
+		<div class="demo demo3">4个切角，4个渐变各站背景1/4，避免切角处颜色互相叠加</div>
+		<div class="demo demo4">2个弧形切角</div>
+		<div class="demo demo5">4个弧形切角</div>
+		<h3>利用svg和border-image实现</h3>
+		<div class="demo demo6">
+			在html中svg规范 xmlns="http://www.w3.org/2000/svg" 可以不要，但是在css中必须要有,<br/>下面的小方块是svg绘制，没有规范属性<br/>
+			<svg version="1.1" width="40" height="40"><polygon points="0,0 20,0, 20,20 0,20" style="fill:#cfc048"></polygon></svg>
+		</div>
+		<div class="demo demo7 demo7-1">
+			svg与border-image实现的切角<br/>
+			border-image:10 url(),<b class="yellow">10</b>是边框背景图片尺寸的1/3，就是九宫格里面一小格的尺寸<br/>
+			<span class="yellow">这里边框用黄色以便于观察，</span>
+
+		</div>
+		<div class="demo demo7 demo7-2">利用svg和border-image实现<br/>背景色与边框色一致</div>
+		<h3>利用裁切路径实现</h3>
+		<div class="demo demo8">
+			clip-path:polygon()实现
+		</div>
+	</div>
+</body>
+</html>

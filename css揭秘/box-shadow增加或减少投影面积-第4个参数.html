@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>box-shadow增加或减少投影面积-第4个参数</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px 0;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		h2 span{color:#AF0023;font-weight: bold;}
+		h2 p{font-size:16px;margin-top: 10px;}
+
+		.box{width:1200px;margin:0 auto;border:2px solid #fff;padding:20px 0;}
+		/*标题样式*/
+		.box h3{padding:10px 30px;background-color:#fafafa;box-shadow: 0 0 3px #999;margin:20px 0 30px 0;}
+		.box h3 b {font-weight:normal;font-size:16px;color:#555;margin-left: 10px;}
+		/*所有阴影样式*/
+		.shadow{width:310px;height: 140px;background-color: #fff;margin:40px;display: inline-block;vertical-align: top;padding:10px;font-size:14px;}
+		.shadow span{color:#ff0000;}
+		.shadow1{box-shadow: 10px 0 5px #000;}
+		.shadow2{box-shadow: 0 10px 5px #000;}
+		.shadow3{box-shadow:inset 0 0 10px #000;}
+		.shadow4{box-shadow:inset 0 0 20px #000;}
+		.shadow5{box-shadow:0 0 20px #000;}
+		.shadow6{box-shadow:0 0 20px 10px #000;}
+		.shadow7{box-shadow:0 0 0 10px #000;}
+		.shadow8{box-shadow:0 0 0 20px #000;}
+		.shadow9{box-shadow:0 0 0 10px #000,inset 0 0 0 10px #000;border:3px dashed #87b3c0;}
+		.shadow.shadow9{box-sizing:padding-box;padding:15px;}
+		.shadow10{box-shadow: 0 0 0 10px #ce7c1c,0 0 0 20px #158a8d;}
+		.shadow11{box-shadow: 5px 5px 0 5px #ce7c1c,-5px -5px 0 5px #158a8d;}
+		.shadow12{box-shadow: inset 0 0 0 10px #faca93,inset 0 0 0 20px #a3e4e6;}
+
+		/*表格样式*/
+		.arg{margin-top: 50px;background-color: #fff;}
+		table{color:#666;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;width:80%;margin:20px;}
+		table th{font-weight: normal;}
+		table th span{color:#ff0000;}
+		table td,table th{padding:10px;border-left:1px solid #ddd;border-top:1px solid #ddd;text-align:left;}
+		table td:first-of-type{width:30%;}
+		/* 文字说明样式 */
+		.note{margin:20px;}
+		.note li{list-style: none;}
+		.note li:before{content:"";width:10px;height: 10px;background-color: #1d9213;display: inline-block;margin-right: 5px;vertical-align: 2px;}
+	</style>
+</head>
+<body>
+	<h2>
+		box-shadow<span>增加</span>或<span>减少</span>投影面积-<span>第4个参数</span>
+		<p>（可以利用第4个参数设置<span>边框效果</span>）</p>
+	</h2>
+
+	<div class="box">
+		<div class="shadow shadow1">x轴5px，模糊距离5px<br/>box-shadow:<br/> 10px 0 5px #000;</div>
+		<div class="shadow shadow2">y轴5px，模糊距离5px<br/>box-shadow:<br/> 0 10px 5px #000;</div>
+		<div class="shadow shadow3"><span>内阴影</span>，模糊距离10px<br/>box-shadow:<br/>inset 0 0 10px #000;</div>
+		<div class="shadow shadow4"><span>内阴影</span>，模糊距离20px<br/>box-shadow:<br/>inset 0 0 20px #000;</div>
+		<div class="shadow shadow5"><span>阴影面积 0px</span> 模糊距离0px<br/>box-shadow:0 0 20px #000;<br/>或者<br/>box-shadow:0 0 20px 0 #000;</div>
+		<div class="shadow shadow6"><span>阴影面积 10px</span> 模糊距离20px<br/>box-shadow:0 0 20px 10px #000;</div>
+		<div class="shadow shadow7"><span>阴影面积 10px，模糊距离 0px</span><br/>box-shadow:0 0 0 10px #000;</div>
+		<div class="shadow shadow8"><span>阴影面积 20px，模糊距离 0px</span><br/>box-shadow:0 0 0 20px #000;</div>
+		<div class="shadow shadow9"><span>外侧阴影和内侧阴影面积：10px<br/>模糊距离：0px</span><br>虚线边框3px</div>
+		<h3>多层阴影<b>支持逗号分隔语法，可以创建任意数量投影</b></h3>
+		<div class="shadow shadow10"><span>2层<b> 外 </b>测阴影</span><br/>box-shadow: <br/>0 0 0 10px #ce7c1c,0 0 0 20px #158a8d;</div>
+		<div class="shadow shadow11"><span>2层<b> 外 </b>测阴影</span><br/><b>x、y轴偏移(5px,5px)(-5px,-5px)</b><br/>box-shadow: <br/>5px 5px 0 5px #ce7c1c,<br/>-5px -5px 0 5px #158a8d;</div>
+		<div class="shadow shadow12"><span>2层<b> 内 </b>测阴影</span><br/>box-shadow: <br/>inset 0 0 0 10px #faca93,<br/>inset 0 0 0 20px #a3e4e6;</div>
+		<!-- 对box-shadow 文字说明 -->
+		<h3>注意</h3>
+		<ul class="note">
+			<li>阴影不会受box-sizing属性的影响。</li>
+			<li>不会相应鼠标事件，比如悬停或点击。解决办法：加上inset利用内侧阴影</li>
+		</ul>
+	</div>
+
+	<div class="arg box">
+		<p>参数：</p>
+		<table cellspacing="0">
+			<th colspan="2">box-shadow: h-shadow v-shadow blur <span>spread</span> color inset;</th>
+			<tr>
+				<td>h-shadow</td>
+				<td>必需的。水平阴影的位置。允许负值</td>
+			</tr>
+			<tr>
+				<td>v-shadow</td>
+				<td>必需的。垂直阴影的位置。允许负值</td>
+			</tr>
+			<tr>
+				<td>blur</td>
+				<td>可选。模糊距离</td>
+			</tr>
+			<tr style="color:#ff0000;">
+				<td>spread</td>
+				<td>可选。阴影的大小</td>
+			</tr>
+			<tr>
+				<td>color</td>
+				<td>可选。阴影的颜色</td>
+			</tr>
+			<tr>
+				<td>inset</td>
+				<td>可选。内侧阴影,不写inset则是外侧阴影</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/three.js"></script>
+	<!-- <script src="js/three-v60.js"></script> -->
+</head>
+<body>
+	<script>
+		//渲染
+		var renderer,w,h;
+		function initRenderer(){
+			w = window.innerWidth;
+			h = window.innerHeight;
+			renderer = new THREE.WebGLRenderer({
+				antialias:true
+			})
+			renderer.setSize(w,h);
+			document.body.appendChild(renderer.domElement);
+		}
+
+		// 相机
+		var camera;
+		function initCamera(){
+			camera = new THREE.PerspectiveCamera(45,w/h,1,1000);
+			camera.position.set(0,0,400);
+		}
+
+		// 场景
+		var scene;
+		function iniScene(){
+			scene = new THREE.Scene();
+		}
+
+		// 灯光
+		var light;
+		function initLight(){
+			// 环境光  红色
+			light = new THREE.AmbientLight(0xff0000);
+			scene.add(light);
+
+			// 平行光 绿色
+			var light2 = new THREE.DirectionalLight(0x00ff00);
+			light2.position.set(0,0,100);
+			scene.add(light2);
+
+		}
+
+		// 模型
+		var cube;
+		function inintModel(){
+			// 不受光照影响
+			// var material = new THREE.MeshBasicMaterial({color:0xffffff});
+			// 受光照影响
+			var material = new THREE.MeshLambertMaterial({color:0xffffff});
+			var geometry = new THREE.CubeGeometry(60,60,60);
+			cube = new THREE.Mesh(geometry,material);
+			cube.position.set(40,20,0);
+			scene.add(cube);
+		}
+
+		// 渲染
+		function render(){
+			renderer.render(scene,camera);
+		}
+
+		// 辅助工具 网格
+		function initHelper(){
+			var helper = new THREE.AxesHelper(100);
+			scene.add(helper);
+		}
+
+		// 动画
+		function animate(){
+			render();
+			cube.rotation.x += 0.02;
+			cube.rotation.y += 0.02;
+			requestAnimationFrame(animate);
+		}
+
+		function draw(){
+			initRenderer();
+			iniScene();
+			initCamera();
+			initLight();
+			inintModel();
+			initHelper();
+			animate();
+		}
+		window.onload = function(){
+			draw();
+		}
+	</script>
+</body>
+</html>

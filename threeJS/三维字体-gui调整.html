@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三维字体-gui调整</title>
+	<script src="js/three.js"></script>
+	<script src="js/SceneUtils.js"></script>
+	<script src="js/GeometryUtils.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/stats.min.js"></script>
+	<script src="js/dat.gui.min.js"></script>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+</head>
+<body>
+	<script>
+		//渲染器
+		var renderer , w, h;
+		function initRenderer(){
+			w = window.innerWidth;
+			h = window.innerHeight;
+			renderer = new THREE.WebGLRenderer({
+				antialias:true
+			});
+			renderer.setSize(w,h);
+			document.body.appendChild(renderer.domElement);
+		} 
+
+		// 相机
+		var camera;
+		function initCamera(){
+			camera = new THREE.PerspectiveCamera(45,w/h,1,10000);
+			camera.position.set(0,0,400);
+		}
+
+		// 场景
+		var scene;
+		function initScene(){
+			scene = new THREE.Scene();
+		}
+
+		// 灯光
+		function initLight(){
+			var light1 = new THREE.AmbientLight(0x404040);
+			scene.add(light1);
+			var light2 = new THREE.DirectionalLight(0xffffff);
+			light2.position.set(1,1,1);
+			scene.add(light2);
+		}
+
+		// 模型
+		var cube;
+		function initModel(){
+			/*var material = new THREE.MeshLambertMaterial();
+			var gometry = new THREE.CubeGeometry(60,60,60);
+			cube = new THREE.Mesh(gometry,material);
+			scene.add(cube);*/
+		}
+
+		// 渲染
+		function render(){
+			renderer.render(scene,camera);
+		}
+
+		// 辅助工具
+		function  initHelper(){
+			var helper = new THREE.AxesHelper(100);
+			scene.add(helper);
+		}
+
+		// ------------------------------------交互插件 OrbitControls
+		var controls;
+		function initOrbitControls(){
+			controls = new THREE.OrbitControls(camera,renderer.domElement);
+			controls.enableDamping = true;
+			controls.enableZoom = true;
+			controls.enablePan = true;
+			controls.autoRotate = false;
+			controls.minDistance = 20;
+			controls.maxDistance = 10000;
+		}
+		// ------------------------------------交互插件 OrbitControls
+
+		// ------------------------------------性能 Stats
+		var stats;
+		function initStats(){
+			stats = new Stats();
+			document.body.appendChild(stats.dom);
+		}
+		// ------------------------------------性能 Stats
+
+		// 生成模型
+		function createMesh(geom){
+			// 设置当前模型矩阵沿xy轴偏移，让图片处于显示中心
+			geom.applyMatrix(new THREE.Matrix4().makeTranslation(-200,-100,-50));
+			// 创建法向量
+			var meshMaterial = new THREE.MeshNormalMaterial({
+				flatShading:THREE.FlatShading,
+				transparent:true,
+				opacity:0.9
+			});
+			// 创建一个线框纹理
+			var wireFrameMat = new THREE.MeshBasicMaterial();
+			wireFrameMat.wireframe = true;
+			// 创建模型
+			var mesh = THREE.SceneUtils.createMultiMaterialObject(geom,[meshMaterial,wireFrameMat]);
+			return mesh;
+		}
+
+		var gui;		
+		var text1,text2;
+		function initGui(){
+			// 声明一个保存需求修改的相关数据的对象
+			gui = {
+				size:90,
+				height:90, //也可以理解为厚度，它与makeTranslation(x,y,z)中z坐标相关，一起决定文字远近大小关系
+				bevelThickness:2, //斜角度
+				bevelSize:0.5,  //斜面尺寸
+				bevelEnabled:true,
+				bevelSegments:3, //斜角段
+				curveSegments:12, //曲线段
+				steps:1,
+				fontName:"helvetiker",
+				fontWeight:"bold",
+				font:null,
+				style:"italics",
+				changeFont:function(){
+					// 创建loader进行字体加载，共后面模型使用
+					var loader = new THREE.FontLoader();
+					loader.load("fontjson/STHupo_Regular.json",function(response){
+						gui.font = response;
+						gui.asGeom();
+					});
+				},
+				asGeom:function(){
+					// 删除原来的旧模型
+					scene.remove(text1);
+					scene.remove(text2);
+					// 创建新模型
+					var options = {
+						size:gui.size,
+						height:gui.height,
+						weight:gui.weight,
+						font:gui.font,
+						bevelThickness:gui.bevelThickness,
+						bevelSize:gui.bevelSize,
+						bevelSegments:gui.bevelSegments,
+						bevelEnabled:gui.bevelEnabled,
+						curveSegments:gui.curveSegments,
+						steps:gui.steps
+					};
+					text1 = createMesh(new THREE.TextGeometry("learning",options));
+					text1.position.z = -100;
+					text1.position.y = 100;
+					scene.add(text1);
+
+					text2 = createMesh(new THREE.TextGeometry("Three.js",options));
+					scene.add(text2);
+				}
+			};
+			var datGui = new dat.GUI();
+			// 将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值)
+			datGui.add(gui,"size",0,200).onChange(gui.asGeom);
+			datGui.add(gui,"height",0,200).onChange(gui.asGeom);
+			datGui.add(gui,"fontName",["gentilis","helvertiker","optimer"]).onChange(gui.changeFont);
+			datGui.add(gui,"bevelThickness",["regular","bold"]).onChange(gui.changeFont);
+			datGui.add(gui,"size",0,200).onChange(gui.asGeom);
+			datGui.add(gui, 'bevelSegments', 0, 30).step(1).onChange(gui.asGeom);
+	        datGui.add(gui, 'bevelEnabled').onChange(gui.asGeom);
+	        datGui.add(gui, 'curveSegments', 1, 30).step(1).onChange(gui.asGeom);
+	        datGui.add(gui, 'steps', 1, 5).step(1).onChange(gui.asGeom);
+
+			gui.changeFont();
+		}
+
+
+		// 动画 渲染
+		function animate(){
+			render();
+			stats.update();
+			controls.update();
+			requestAnimationFrame(animate);
+		}
+
+		function draw(){
+			initRenderer();
+			initCamera();
+			initScene();
+			initLight();
+			initModel();
+
+			// 辅助工具
+			initHelper();
+
+			initGui();
+
+			// 交互
+			initOrbitControls();
+			// 性能
+			initStats();
+
+			animate();
+		}
+
+		window.onload = function(){
+			draw();
+		}
+	</script>
+</body>
+</html>

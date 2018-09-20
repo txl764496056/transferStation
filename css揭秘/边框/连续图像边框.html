@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>连续图像边框</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		h3{color:#3db794;border-top:3px solid #3db794;border-left:40px solid #3db794;padding:5px 10px;margin-bottom: 20px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+		.box{width:1200px;margin:0px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;	}
+		.note{padding:0 30px;margin-bottom: 10px;line-height: 30px;}
+		.note b{color:#ff0000;}
+		.demo{width:320px;height: 160px;margin:0 33px 30px;color:#444;display: inline-block;vertical-align:top;font-size: 14px;}
+		
+		.pre{border:15px dashed #fff;padding:15px;background-color:#687a9b;background-image:url(bg.jpg);background-size:cover;}
+		.pre p{background-color: #fff;margin-top: 20px;font-size:16px;padding:5px;}
+		.pre0{background-repeat:no-repeat;}
+		.pre0-1{background-origin:content-box;}
+		.pre0-2{background-origin:padding-box;}
+		.pre0-3{background-origin:border-box;}
+
+		.pre1{background-repeat:repeat;}
+		.pre1-1{background-origin:content-box;}
+		.pre1-2{background-origin:padding-box;}
+		.pre1-3{background-origin:border-box;}
+
+		.demo1{background:url(bg.jpg) center center no-repeat;background-size:cover;padding:20px;}
+		.demo1-content{background-color:#fff;padding:10px;height:100%;}
+		
+		.demo2{width:520px!important;height:230px!important;border:20px solid transparent;padding:15px;background:linear-gradient(#fff,#fff),url(bg.jpg) center center;background-size:cover;background-clip:padding-box,border-box;}
+		.demo2-2{background-origin:border-box;}
+		
+		.demo3{border:10px solid transparent;padding:15px;background:linear-gradient(#fff,#fff),repeating-linear-gradient(-45deg,#74BDF9 0,#74BDF9 8px,#fff 0,#fff 16px,#F1273F 0,#F1273F 24px,#fff 0,#fff 32px);background-clip:padding-box,border-box;background-origin:border-box;}
+
+		.demo4{padding:10px;background:linear-gradient(#fff,#fff),repeating-linear-gradient(45deg,#000 0,#000 25%,transparent 0,transparent 50%);background-size:100% 100%,10px 10px;background-clip: padding-box,border-box;background-origin:border-box;animation:mayi 5s linear infinite;}
+		.demo4-1{border:1px solid transparent;}
+		.demo4-2{border:10px solid transparent;}
+		@keyframes mayi{
+			to{background-position:100%;}
+		}
+		
+		.demo5{padding:10px;background-color: #fff;}
+		.demo5 p{font-size: 25px;border-top:3px solid transparent;border-image:100% 0 0 linear-gradient(90deg,#000 100px,transparent 100px);background-origin:border-box;padding:0 5px;margin-top: 15px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>连续图像边框</h2>
+		<h3>先温习一下小知识</h3>
+		<div class="note">background-color:#687a9b;&emsp;background-image:url(bg.jpg);&emsp;background-size:cover;&emsp;background-repeat: <b>no-repeat</b>;<p>以下是background-origin不同值的效果</p></div>
+		<div class="demo pre pre0 pre0-1"><p>background-origin:content-box;</p></div>
+		<div class="demo pre pre0 pre0-2"><p>background-origin:padding-box;</p></div>
+		<div class="demo pre pre0 pre0-3"><p>background-origin:border-box;</p></div>
+
+		<div class="note">background-color:#687a9b;&emsp;background-image:url(bg.jpg);&emsp;background-size:cover;&emsp;background-repeat: <b>repeat</b>;<p>以下是background-origin不同值的效果</p></div>
+		<div class="demo pre pre1 pre1-1"><p>background-origin:content-box;</p></div>
+		<div class="demo pre pre1 pre1-2"><p>background-origin:padding-box;</p></div>
+		<div class="demo pre pre1 pre1-3"><p>background-origin:border-box;</p></div>
+		<div class="note dot">
+			对比上面的效果
+			<p>设置为no-repeat时，会用背景色填充空白区域</p>
+			<p>设置为repeat时，会用背景图片填充空白区域</p>
+			<p>background-clip:border-box;默认值是border-box;</p>
+		</div>
+		
+		<h3>连续图像边框--开始</h3>
+		<div class="demo demo1">
+			<div class="demo1-content">
+				2个HTML元素实现图像边框效果
+			</div>
+		</div>
+		<br/>
+		<div class="demo demo2 demo2-1">
+			2-1、1个HTML元素,利用渐变实现图像边框效果
+			<p class="red">问题：边框背景是复制的背景拼贴的</p>
+			<p><span class="blue">原因：</span>background-origin的默认值是padding-box，<br/>
+				因此，图片的显示尺寸 不仅 取决于padding-box的尺寸，而且被放置在了padding-box的原点（左上角）。我们看到的实际上就是背景图片已平铺（重复）的方式蔓延到border-box区域的效果。
+			</p>
+			<p><span class="red">解决办法：</span>background-origin:border-box;让不片从border-box左上角开始, <b>右侧2-2是已解决的</b></p>
+		</div>
+		<div class="demo demo2 demo2-2">
+			2-2、1个HTML元素,利用渐变实现图像边框效果
+			<p class="red">问题：边框背景是复制的背景拼贴的</p>
+			<p class="blue">解决了左侧2-1中出现的问题</p>
+		</div>
+		
+		<div class="demo demo3">
+			老是信封边框样式
+		</div>
+		<div class="demo demo4 demo4-1">
+			模拟蚂蚁线
+		</div>
+		<div class="demo demo4 demo4-2">
+			模拟蚂蚁线，<span class="red">放大效果</span>
+		</div>
+		<div class="demo demo5">
+			利用border-image加上渐变实现类似上划线效果
+			<p>顶部边框裁切效果</p>
+		</div>
+	</div>
+</body>
+</html>

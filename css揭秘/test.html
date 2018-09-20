@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;width:1200px;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;;height: 100px;
+			
+		}
+		.corro{width:200px;border:50px solid #E55353;height:50px;background-color: #E55353;color:#fff;font-size: 18px;font-weight:bold;text-align:center;}
+		.demo8{
+			background:#58a;
+			clip-path:polygon(
+				20px 0,
+				calc(100% - 20px) 0,
+				100% 20px,
+				100% calc(100% - 20px),
+				calc(100% - 20px) 100%,
+				20px 100%,
+				0 calc(100% - 20px),
+				0 20px
+				);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewbox="0 0 300 300">
+			<rect fill="#ff0000" width="150" height="150"></rect>
+		</svg>
+	</div>
+	<script>
+		
+		var a=[[1,2],[3,4]].map(([a,b])=>a+b);
+		var b=[[1,2],[3,4]].map(function(arr){
+			return arr[0]+arr[1];
+		})
+		console.log(a,b);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视觉效果-投影</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f5f5f5;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot{font-size:16px;color:#333;line-height: 32px;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #F27B2B;display:inline-block;margin-right:10px;}
+		.note{padding:15px 30px;background-color: #fff;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.demo{display: inline-block;width:235px;margin:30px;background-color: #4ABAAD;height:160px;line-height: 140px;color:#fff;text-align: center;vertical-align: top;}
+		.demo1{box-shadow:0 6px 4px -2px rgba(100,100,100,0.8);}
+		.demo2{box-shadow:8px 0 4px -4px rgb(100,100,100,0.8);}
+		.demo3{box-shadow:0 -6px 4px -4px rgba(100,100,100,0.8);}
+		.demo4{box-shadow:3px 3px 6px 0 rgba(100,100,100,0.8);padding:10px;line-height: 30px;}
+		.demo5{box-shadow:3px 3px 6px -3px rgba(100,100,100,0.8);line-height: 30px;padding:10px;}
+		.demo6{box-shadow: 3px 0 6px -3px rgba(100,100,100,1),-3px 0 6px -3px rgba(100,100,100,0.8)}
+		.demo7{box-shadow: 6px 0 6px -3px rgba(100,100,100,1),-6px 0 6px -3px rgba(100,100,100,0.8);line-height: 30px;padding:10px;}
+		.demo8{box-shadow: 0 0 5px 0 rgba(100,100,100,0.8);border-radius: 20px;}
+		.demo9{box-shadow: 0 0 5px 0 rgba(100,100,100,0.8);line-height: 30px;padding:20px;}
+		.demo10{box-shadow: 0 0 5px 0 rgba(100,100,100,0.8);line-height: 30px;padding:20px;position: relative;}
+		.demo11{border:10px dashed #4ABAAD;background:transparent;box-shadow:0 0 5px rgba(100,100,100,0.9);color:#000;line-height: 30px;}
+		.demo12{filter:drop-shadow(0 0 5px rgba(100,100,100,0.9));line-height: 30px;padding:15px;}
+		.demo13{position: relative;filter:drop-shadow(0 0 5px rgba(100,100,100,0.8));line-height: 30px;padding:15px;}
+		.demo14{border:10px dashed #4ABAAD;background:transparent;color:#000;line-height: 30px;filter:drop-shadow(0 0 3px rgba(100,100,100,0.9));}
+		.arrow::after{content:"";position: absolute;right:-40px;top:50%;margin-top: -20px;width:0;height:0;border:20px solid transparent;border-left-color:#4ABAAD;}
+		.linearbg1{background:linear-gradient(45deg,transparent 20px,#4ABAAD 0) left bottom,linear-gradient(-45deg,transparent 20px,#4ABAAD 0) right bottom,linear-gradient(-135deg,transparent 20px,#4ABAAD 0) right top,linear-gradient(135deg,transparent 20px,#4ABAAD 0) left top;background-repeat:no-repeat;background-size:51% 51%;}
+		.cutanglebg1{background:#4ABAAD;clip-path:polygon( );}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>视觉效果-投影</h2>
+		<h3>单侧投影（只有一边有）</h3>
+		<div class="note">
+			<p class="dot">利用负数（投影的第4个参数-扩张投影）</p>
+			<p class="dot">投影参数：扩张投影，设为负数，是投影缩短，</p>
+			<p class="dot">模糊参数：设为正数是扩大投影</p>
+		</div>
+		<div class="demo demo1">底部投影</div>
+		<div class="demo demo2">右侧投影</div>
+		<div class="demo demo3">顶部侧投影</div>
+		<h3>领边投影</h3>
+		<div class="note">
+			<p class="dot">2个领边投影位移与模糊大小一样，扩展值不一样</p>
+		</div>
+		<div class="demo demo4">领边投影,扩展值是0，显示出来的阴影就是6px</div>
+		<div class="demo demo5">领边投影，扩展值是-3px，显示出来的阴影就是3px</div>
+		<h3>双侧投影</h3>
+		<div class="note">
+			<p class="dot">用两块投影，类似把单侧投影用2次</p>
+		</div>
+		<div class="demo demo6">3px两侧投影</div>
+		<div class="demo demo7">6px两侧投影，改变x轴的位移即可</div>
+		<h3>不规则投影</h3>
+		<div class="note">
+			<p class="dot">利用css滤镜，filter:drap-shadow(),相关滤镜还有很多，这里不坐描述</p>
+			<p class="dot">drap-shadow()参数：offsetX offsetY r color<br/>
+				offsetX：x轴偏移量&emsp;offsetY：y轴偏移量&emsp;r：模糊半径&emsp;color：阴影颜色
+				<span class="blue">没有扩张半径和inset</span>
+			</p>
+		</div>
+		<div class="demo demo8">圆角效果,投影没问题。box-shadow</div><br/>
+		<div class="demo linearbg1 demo9">四个角本不该有投影。box-shadow</div>
+		<div class="demo arrow  demo10">右侧箭头没有投影。box-shadow</div>
+		<div class="demo demo11">投影是矩形,应该是每个实色点有投影才对。box-shadow</div><br/>
+		<div class="demo linearbg1 demo12">4个角不会出现白色和直角投影。filter:drop-shadow( )</div>
+		<div class="demo arrow demo13">右侧箭头有投影了。filter:drop-shadow( )</div>
+		<div class="demo demo14">每个实色点有投影，并且不会出现背变成白色。filter:drop-shadow( )</div>
+	</div>
+</body>
+</html>

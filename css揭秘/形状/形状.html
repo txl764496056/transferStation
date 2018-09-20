@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>形状</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		h3{color:#5b3db7;border-top:3px solid #5b3db7;border-left:40px solid #5b3db7;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+		.box{width:1200px;margin:0px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;	}
+		.note{padding:0 30px;margin-bottom: 10px;line-height: 30px;}
+
+		.demo{width:220px;height: 150px;background-color: #8b714f;margin:25px;text-align:center;line-height: 150px;font-size:18px;color:#fff;font-weight:bold;display: inline-block;position: relative;vertical-align: top;}
+		.demo1{border-radius:50%;}
+		.demo2{border-radius:50%/100% 100% 0 0;}
+		.demo3{border-radius:100% 0 0 100%/50%;}
+		.demo4{border-radius:100% 0 0 0;}
+		.demo5{transform:skew(-25deg);}
+		.demo5-2 p{transform:skew(25deg);}
+		.demo.demo5-3{background-color: transparent;line-height: normal;padding-top: 45px;font-size: 16px;}
+		.demo5-3:after{content:"";position: absolute;left:0;bottom:0;right:0;top:0;transform:skew(-25deg);background-color: #8b714f;z-index:-1;}
+		.demo6{border:2px solid #8b714f;}
+		.demo.demo6{background-color: transparent;}
+		.demo6:after{content:"";position:absolute;left:0;right:0;bottom:0;top:0;background-color:#8b714f;border-radius: 50%;z-index:-1;}
+		.demo7:after{position:absolute; left:-10px;top:-10px;right:-10px;bottom:-10px;z-index:-1;border:10px solid #3387C2;box-sizing:content-box;content:"";}
+		.demo7:before{position:absolute; left:-20px;top:-20px;right:-20px;bottom:-20px;z-index:-1;border:10px solid #33C2B2;box-sizing:content-box;content:"";}
+		/*菱形图片*/
+		.demo.demo8-1,.demo.demo8-2{width:95%;text-align: left;height:175px;}
+		.img-box{width:106px;height:106px;transform:rotate(45deg);border:3px solid #ff0000;overflow:hidden;margin:25px;display: inline-block;vertical-align: top;}
+		.img-box img{max-width:100%;max-height:100%;transform:rotate(-45deg);}
+		.demo8-2 img{transform:rotate(-45deg) scale(1.42);}
+		.fr-note{vertical-align: top;font-weight: normal;line-height: 22px;font-size: 16px;display: inline-block;width:85%;padding:10px;}
+		.demo.demo8-3{padding:10px;height:250px;width:95%;text-align:left;height:auto;}
+		.demo.demo8-3>*{line-height: 22px;font-weight: normal;font-size: 16px;}
+		.demo8-3-note{margin-bottom: 10px;}
+		.demo8-3 img{width:250px;height:186px;vertical-align: top;}
+		.demo8-3 .demo8-3-img1{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+		.demo8-3 .demo8-3-img2{clip-path:polygon(125px 0,218px 93px,125px 186px,32px 93px);}
+		.demo8-3 .demo8-3-img2{clip-path:polygon(125px 0,218px 93px,125px 186px,32px 93px);}
+		.demo8-3 ul li{display: inline-block;width:25%;vertical-align: top;text-align:center;}
+		.demo8-3 ul{margin-bottom: 10px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>形状</h2>
+		<h3>精确的自适应椭圆</h3>
+		<div class="note">border-radius:x/y, 可以接受数值和百分比<br/>精确的椭圆：两个圆角半径分别指定为元素宽高的一半。</div>
+		<div class="demo demo1">自适应椭圆</div>
+		<div class="demo demo2">自适应半椭圆</div>
+		<div class="demo demo3">自适应半椭圆</div>
+		<div class="note">
+			<p class="dot">2种写法，一样的效果</p>
+			<p>border-radius:50% 50% 0 0/100% 100% 0 0</p>
+			<p>border-radius:50%/100% 100% 0 0;</p>
+			<p>因为：底部两个角的垂直圆角是零，那么它们的水平圆角是多少就完全不重要了，因为此时水平圆角总是会被计算为零。</p>
+		</div>
+		<div class="demo demo4">1/4椭圆</div>
+		<h3>平行四边形</h3>
+		<div class="demo demo5">平行四边形</div>
+		<div class="demo demo5 demo5-2">
+			<p>多一个标签矫正变形文字</p>
+		</div>
+		<div class="demo demo5-3">
+			利用伪元素，无需多加标签<br/>伪类z-index:-1;不会遮挡内容
+		</div>
+		<h3>利用伪类实现各种效果</h3>
+		<div class="demo demo6">边框内圆角效果</div>
+		<div class="demo demo7">多重边框</div>
+		<h3>菱形图片</h3>
+		<div class="demo demo8 demo8-1">
+			<div class="img-box">
+				<img src="15.jpg" alt="">
+			</div>
+			<div class="fr-note">
+				8-1：<b>2个标签实现菱形图片</b>
+				<b class="yellow">问题：</b>图片旋转过来之后并没有填充整个菱形，出现了空白<br/>
+				<b class="yellow">原因：</b>图片最大尺寸是外层div的宽高，旋转之后，图片宽高要按照外层DIV的对角线长度计算，显然div对角线长度>div宽高<br/>
+				<b class="yellow">对角线计算:</b>这里是正方形（w=h），则对角线=(宽度或者高度)*&radic;<span style="text-decoration:overline;">2</span><br/>
+				<b class="yellow">图片缩放比例:</b> = &radic;<span style="text-decoration:overline;">2</span> ≈ 1.42<br/>
+				<b class="blue">注意：</b>这里只需要知道x和y轴缩放比例，不是实际尺寸，这里是正方形，则x、y的缩放比例一样。<br/>
+				解决后的效果如示例8-2
+			</div>
+		</div>
+		<div class="demo demo8 demo8-2">
+			<div class="img-box">
+				<img src="15.jpg" alt="">
+			</div>
+			<div class="fr-note">
+				8-2：<b>2个标签实现菱形图片</b><br/>
+				没有出现空白了。<b class="yellow">但仅适用于正方形图片，且需要一个包裹容器</b>
+			</div>
+		</div>
+		<div class="demo demo8 demo8-3">
+			<div class="demo8-3-note">
+				8-3：<b>1个标签实现菱形图片</b>，不需要包裹容器<br/>
+				下面图片不是正方形图片。
+			</div>
+			<ul>
+				<li>
+					<img src="mouse.jpg" alt=""><br/>
+					原图片
+				</li>
+				<li>
+					<img class="demo8-3-img1" src="mouse.jpg" alt=""><br/>
+					菱形
+				</li>
+				<li>
+					<img class="demo8-3-img2" src="mouse.jpg" alt=""><br/>
+					4条边相等的菱形
+				</li>
+			</ul>
+			<div>
+				<b class="yellow">计算：</b>4条边相等菱形，坐标点计算。<br/>
+				（1）图片宽度：250*186。<br/>
+				（2）最大正方形尺寸：186*186。<br/>
+				（3）宽度分为3部分：（250-186）/2=32，取用中间的正方形，所以左右会有32px多出。<br/>
+				（4）总共需要4个坐标点，top、right、bottom、left。<br/>
+				 &emsp;top：(250/2,0) = (125,0) &emsp; right：(250-32,186/2) = (218,93) &emsp; bottom：(250/2,186) = (125,186) &emsp;  left：(32,186/2) = (32,93)
+			</div>
+		</div>
+	</div>
+</body>
+</html>

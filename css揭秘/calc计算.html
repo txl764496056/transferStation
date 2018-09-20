@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clac计算</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;width:1200px;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;;}
+
+		.demo{width:300px;height: 140px;background-color: #Fff;position: absolute;top:calc(50% - 70px);left:calc(50% - 150px);}
+
+		/* 文字说明样式 */
+		.note{margin:0 auto;width:1200px;}
+		.note li{list-style: none;}
+		.note li:before{content:"";width:10px;height: 10px;background-color: #1d9213;display: inline-block;margin-right: 5px;vertical-align: 2px;}
+		.note li span{color:#ff0000;}
+	</style>
+</head>
+<body>
+	<h2>利用calc居中定位</h2>
+	<div class="box">
+		<div class="demo demo1"></div>
+	</div>
+	
+	<h2>注意</h2>
+	<ul class="note">
+		<li>运算符前后都需要<span>保留一个空格</span>，例如：width: calc(100% - 10px)；</li>
+		<li>不会相应鼠标事件，比如悬停或点击。解决办法：加上inset利用内侧阴影</li>
+	</ul>
+
+</body>
+</html>

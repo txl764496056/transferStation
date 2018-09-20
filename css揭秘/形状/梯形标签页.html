@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>梯形标签页</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:14px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto 0;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.note{padding:10px 30px;background-color: #fff;font-size:16px;margin-bottom: 30px;}
+		.note b{font-size: 20px;line-height: 35px;}
+		.note p{line-height: 35px;}
+		.dot:before{content:"";width:12px;height:12px;border-radius:3px;background-color: #58a;display:inline-block;margin-right:10px;}
+		.demo{width:280px;height: 80px;font-size: 18px;font-weight: bold;color:#000;text-align:center;line-height: 70px;position: relative;border:2px solid #FF8E48;display: inline-block;vertical-align:top;margin:30px 50px;}
+		.demo::before{position: absolute;left: 0;right:0;bottom:0;top:0;content:"";z-index:-1;background-color: #58a;}
+		.demo.demo1::before{transform:perspective(200px) rotateX(45deg);}
+		.demo.demo2::before{transform:perspective(200px) rotateX(45deg);transform-origin:bottom;}
+		.demo.demo3::before{transform:perspective(200px) rotateX(45deg) scaleY(2.3);transform-origin:bottom;}
+		.demo.demo4::before{transform:perspective(200px) rotateX(45deg) scaleY(2.3); transform-origin:left bottom;}
+		.demo.demo5::before{transform:perspective(200px) rotateX(45deg) scaleY(2.3); transform-origin:right bottom;}
+		.demo.demo6::before{transform:perspective(200px) rotateX(45deg) scaleY(1.03); transform-origin:top;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>梯形标签页</h2>
+		<div class="note">
+			<b class="red">利用3D空间变形实现</b>
+			<p class="dot">transform-origin:bottom;当它在3D空间中旋转时，可以把它的底边固定住。更容易观察</p>
+			<p class="dot">变形后高度会缩水，利用scaleY()来改变尺寸</p>
+			<p class="dot">避免内部元素变形，利用伪类元素变形为梯形</p>
+			<p class="dot">伪类元素设为z-index:-1,就不会遮挡内部元素</p>
+		</div>
+		<div class="demo demo1">
+			变形后高度缩小
+		</div>
+		<div class="demo demo2">将变形中心固定在底部</div>
+		<div class="demo demo3">将高度缩放2.3倍</div>
+		<div class="demo demo4">变形中心左下角,缩放2.3倍</div>
+		<div class="demo demo5">变形中心右下角,缩放2.3倍</div>
+		<div class="demo demo6">变形中心顶部,缩放1.03倍</div>
+	</div>
+</body>
+</html>

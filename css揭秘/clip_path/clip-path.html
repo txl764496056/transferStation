@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clip-path</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #d1d1d1;}
+		.box{width:1200px;margin:0px auto;border:2px solid #fff;padding:20px 0;position: relative;height: 700px;}
+		.view{position: absolute;left: 20px;top:20px;border:1px solid #aaa;width:300px;height:300px;}
+		.view img{width:100%;height:100%;}
+		.clip-pot{width:830px;right:0;top:20px;position: absolute;}
+		.clip-pot span{border-radius: 5px;border:1px solid #aaa;background-color:#fff;padding:5px 10px;display: inline-block;font-size:14px;margin-right: 5px;}
+		.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);}
+		.diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+		.message{clip-path:polygon(0 0,100% 0,100% 50%,70% 50%,80% 70%,60% 50%,0 50%);}
+		span.on{background-image:linear-gradient(#FDBA88,#EA7612);color:#fff;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="view">
+			<img class="diamond" src="15.jpg" alt="">
+		</div>
+		<div class="clip-pot">
+			<span class="on" data-triangle="triangle">等腰三角形</span>
+			<span data-diamond="diamond">菱形</span>
+			<span data-message="message">信息框</span>
+		</div>
+	</div>
+	<script>
+		window.onload = function(){
+			
+
+			var el = document.querySelectorAll(".clip-pot span");
+			var view = document.querySelector(".view img");
+
+			for(var i=0;i<el.length;i++){
+				el[i].addEventListener("click",switchClass,false);
+			}
+			function switchClass(event){
+				var e = event || window.event;
+				for(var item in this.dataset){
+					view.classList = item;
+				}
+				document.querySelector(".clip-pot span.on").classList.remove("on");
+				this.classList.add("on");
+			}
+
+		}
+	</script>
+</body>
+</html>

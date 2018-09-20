@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>角向渐变-棋盘背景</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;margin-top: 50px;}
+		h2 p{font-size: 18px;color:#ff0000;margin-top: 5px;font-weight: bold;}
+		.box{width:1200px;margin:50px auto;border:1px solid #fff;padding:0 30px;}
+		.line:before{content:"";display: block;background-color:#ffb800;height:5px;}
+
+		.demo{height: 350px;}
+		.demo span{font-size: 20px;background-color: #ffb800;padding:8px 12px;display: inline-block;}
+		.demo1{background:conic-gradient(blue,yellow);}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>角向渐变</h2>
+		<div class="demo demo1 line"><span>角向渐变</span></div>
+		<div class="demo demo2 line"><span>棋盘</span></div>
+	</div>
+</body>
+</html>

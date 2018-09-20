@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伪类元素加背景色遮挡元素内容-只需要一句代码解决问题</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #d1d1d1;}
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		.demo{width:450px;height: 200px;position: relative;margin:0 auto;padding:10px;line-height: 30px;}
+		.demo:after{content:"";position: absolute;left:0;right:0;bottom:0;top:0;background-color: #fff;z-index:-1;}
+		.demo p{color:#ff0000;}
+	</style>
+</head>
+<body>
+	<h2>伪类元素加背景色遮挡元素内容-只需要一句代码解决问题</h2>
+	<div class="demo">
+		<p>以下定位，能保持伪类与元素保持一样的宽高</p>
+		position: absolute;left:0;right:0;bottom:0;top:0;
+		<p>下面的设置，能是伪类不会遮挡元素内容，无需其他设置</p>
+		z-index:-1;
+
+	</div>
+</body>
+</html>

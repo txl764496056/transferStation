@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复杂背景</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;margin-top: 50px;}
+		h2 p{font-size: 18px;color:#ff0000;margin-top: 5px;font-weight: bold;}
+		h2 b{display: block;color:#666;font-weight: normal;font-size: 18px;margin-top: 5px;}
+		.box{width:1200px;margin:50px auto;border:1px solid #fff;padding:0 30px;}
+		.line:before{content:"";display: block;background-color:#ffb800;height:5px; }
+		/* 渐变色 */
+		.demo{height: 300px;}
+		.demo span{font-size: 20px;background-color: #ffb800;padding:8px 12px;display: inline-block;}
+		.demo span i{ background-color: #a7591a;height: 100%;display: inline-block;padding:0 10px;color:#fff;}
+		.note{background-color: #f9f9f9;padding:10px 20px 20px;}
+		.note h3{font-weight: normal;font-size:18px;}
+		.note p{display: inline-block;width:48%;color:#444;font-size:14px;}
+
+		.demo1{background:#58a;background-image:linear-gradient(rgba(255,255,255,0.5)  1px,transparent 0),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:30px 30px;}
+		.demo2{background:#58a;
+			background-image:linear-gradient(rgba(255,255,255,0.5) 1px ,transparent 1px),
+			linear-gradient(90deg,rgba(255,255,255,0.5) 1px ,transparent 1px),
+			linear-gradient(rgba(255,255,255,0.8) 2px,transparent 2px),
+			linear-gradient(90deg,rgba(255,255,255,0.8) 2px,transparent 2px);
+			background-size:30px 30px,30px 30px,150px 150px,150px 150px;
+		}
+		.demo3{background:#8d5e3b;
+			background-image:radial-gradient(rgba(255,255,255,0.5) 5px,transparent 0),radial-gradient(rgba(255,255,255,0.5) 5px,transparent 0);
+			background-size:30px 30px;
+			background-position:0 0,15px 15px;
+		}
+		.demo4{background:#ddd;
+			background-image:linear-gradient(45deg,#aaa 25%,transparent 25%,transparent 75%,#aaa 0),linear-gradient(45deg,#aaa 25%,transparent 25%,transparent 75%,#aaa 0);background-size:60px 60px;background-position:0 0,30px 30px;
+		} 
+		.demo4-1{background:#ddd;
+			background-image:linear-gradient(45deg,#aaa 25%,transparent 26%,transparent 75%,#aaa 0),linear-gradient(45deg,#aaa 25%,transparent 26%,transparent 75%,#aaa 0);background-size:60px 60px;background-position:0 0,30px 30px;
+		} 
+		.demo5{background:#ddd;
+			background-image:linear-gradient(45deg,#aaa 25%,transparent 25%,transparent 75%,#aaa 75%,#aaa 100%),linear-gradient(45deg,#aaa 25%,transparent 0),linear-gradient(45deg,transparent 75%,#aaa 0);background-size:60px 60px;background-position:0 0,30px 30px,30px 30px;
+		} 
+	 	.demo.animate-note{margin-top: 10px;}
+	 	.demo.animate-note span{background-color: #305eae;padding:10px 100px;text-align:center;color:#fff;}
+		
+		.demo6{background-color:#aaa;background-image:linear-gradient(90deg,#6d6f38 25%,transparent 0),linear-gradient(90deg,#517851 45%,transparent 0),linear-gradient(90deg,#49496c 30%,transparent 0);background-size: 31px 100%,41px 100%,51px 100%;}
+
+		/*棋盘原理分析*/
+		.theory{font-size: 0;margin-top: 40px;position: relative;}
+		.theory>*{font-size:16px;}
+		.txt p{width:50%;display: inline-block;float: left;padding-left: 50px;margin-top: 20px;}
+		.theory-unit{display: inline-block;box-shadow:0 0 0 2px #ff0000;width:160px;height: 160px;}
+
+		.theory-unit1{background-image:linear-gradient(45deg,#aaa 25%,transparent 0,transparent 75%,#aaa 0);background-size:80px 80px;background-position:0 0;position: absolute;left: 80px;top:80px;}
+		.theory-unit2{width:80px;height: 80px;background-image:linear-gradient(45deg,#874949 25%,transparent 0,transparent 75%,#874949 0);background-size:80px 80px;background-position:0 0;position: absolute;left:0;top:0;}
+
+		.theory-unit3{background-image:linear-gradient(45deg,#aaa 25%,transparent 0,transparent 75%,#aaa 0);background-size:80px 80px;background-position:0 0;position: absolute;left: 630px;top:80px;}
+		.theory-unit4{width:80px;height: 80px;background-image:linear-gradient(45deg,#874949 25%,transparent 0);background-size:80px 80px;background-position:0 0;position: absolute;left:550px;top:0;}
+		.theory-unit5{width:80px;height: 80px;background-image:linear-gradient(45deg,transparent 75%,#2a8964 0);background-size:80px 80px;background-position:0 0;position: absolute;left:550px;top:0;}
+		.animate1{animation:translateXY1 3s 1s infinite;}
+		.animate2{animation:translateXY2 1s 1s forwards;}
+		.animate3{animation:translateXY2 1s 2.5s forwards;}
+		@keyframes translateXY1{
+			0%{
+				left:0px;top:0px;
+				}
+			50%{
+				left:80px;top:80px;
+			}
+			100%{
+				left:120px;top:120px;
+			}
+		}
+
+		@keyframes translateXY2{
+			0%{
+				left:550px;top:0px;
+				}
+			100%{
+				left:670px;top:120px;
+			}
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>网格<b>深色作为背景色，小网格利用渐变色实现</b></h2>
+		<div class="demo demo1 line"><span>网格1</span></div>
+		<div class="demo demo2 line"><span>网格2</span></div>
+		<h2>波点<p>第2层背景的偏移定位必须是贴片宽高的一半</p></h2>
+		<div class="demo demo3 line"><span>波点1</span></div>
+		<h2>棋盘</h2>
+		<div class="demo demo4 line"><span>棋盘1：2层渐变叠加，<i>有缝隙</i></span></div>
+		<div class="demo demo4-1 line"><span>棋盘1：2层渐变叠加，<i>无缝隙缝隙</i></span></div>
+		<div class="note">
+			<h3>2层渐变叠加<b>消除缝隙</b>方法:&emsp;修改2处色标位置数值</h3>
+			<p>有缝隙代码：<br/>
+				background-image:
+				<br/>linear-gradient(45deg,#aaa 25%,transparent <b>25%</b>,transparent 75%,#aaa 0),
+				<br/>linear-gradient(45deg,#aaa 25%,transparent <b>25%</b>,transparent 75%,#aaa 0);</p>
+			<p>无缝隙代码：<br/>
+				background-image:
+				<br/>linear-gradient(45deg,#aaa 25%,transparent <b>26%</b>,transparent 75%,#aaa 0),
+				<br/>linear-gradient(45deg,#aaa 25%,transparent <b>26%</b>,transparent 75%,#aaa 0);</p>
+		</div>
+		<div class="demo demo5 line"><span>棋盘2：3层渐变叠加，<i>无缝隙</i></span></div>
+		<div class="demo animate-note">
+			<span>2种棋盘背景叠加原理</span>
+			<div class="txt">
+				<p>2层背景叠加</p>
+				<p>3层背景叠加</p>
+			</div>
+			<div class="theory">
+				<div class="theory-unit theory-unit1"></div>
+				<div class="theory-unit theory-unit2 animate1"></div>
+				<div class="theory-unit theory-unit3"></div>
+				<div class="theory-unit theory-unit4 animate2"></div>
+				<div class="theory-unit theory-unit5 animate3"></div>
+			</div>
+		</div>
+		<h2>伪随机背景</h2>
+		<div class="demo demo6 line"><span>伪随机背景1</span></div>
+		<div class="note">
+		    所有背景的重复大小是：所有background-size的最小公倍数。<br/>
+			比如:background-size:40px 100%,60px 100%,80px 100%。最下小公倍数240px，背景重复的单元是240px<br/>
+			随机背景就利用质数，重复单元就会大很多，比如41,61,81,最小公倍数就是41*61*81=207583，就不容易看出重复<br/>
+		</div>
+	</div>
+	<script>
+		window.onload=function(){
+			var el_1 = document.querySelector(".theory-unit4");
+			var el_2 = document.querySelector(".theory-unit5");
+			var flag1 = false; //记录 theory-unit4 动画状态
+			var flag2 = false; //记录 theory-unit5 动画状态
+			el_1.addEventListener("animationend",function(){
+				flag1 = true;
+			});
+			el_2.addEventListener("animationend",function(){
+				flag2 = true;
+			});
+			// 实现效果：每隔2秒检测一下动画是否正在执行
+			// 1、刚好执行完某次动画，flag1=false或者flag2=false,移除动画效果，为下一次动画执行做准备
+			// 2、上次动画执行完，且当前没有任何动画正在执行，则重新添加动画
+			setInterval(function(){
+				if(flag1&&flag2){ //2个元素的动画执行完
+					el_1.classList.remove("animate2");
+					el_2.classList.remove("animate3");
+					flag1 = false; //当某次动画执行完，flag1和flag2改为false，则会将动画重新添加上去再运行一次
+					flag2 = false;
+				}else{ 
+					el_1.classList.add("animate2");
+					el_2.classList.add("animate3");
+				}
+			},2000);
+		}
+	</script>
+</body>
+</html>

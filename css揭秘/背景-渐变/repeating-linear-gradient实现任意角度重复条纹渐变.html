@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;width:1200px;}
+		.box{width:1200px;margin:0px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;;height: 100px;
+			background:repeating-linear-gradient(60deg,#4c769d 0,#4c769d 30px,#e89a1c 0,#e89a1c 60px)
+		}
+		.code{width:1200px;margin:0 auto;background-color: #Fff;padding:10px;color:#666;}
+		/* 文字说明样式 */
+		.note{margin:20px auto;width:1200px;}
+		.note li{list-style: none;font-size: 18px;}
+		.note li:before{content:"";width:10px;height: 10px;background-color: #1d9213;display: inline-block;margin-right: 5px;vertical-align: 2px;}
+	</style>
+</head>
+<body>
+	<h2>任意角度条纹渐变</h2>
+	<div class="box"></div>
+	<div class="code"><b>代码：</b>background:repeating-linear-gradient(60deg,#4c769d 0,#4c769d 30px,#e89a1c 0,#e89a1c 60px);</div>
+
+	<h2>注意</h2>
+	<ul class="note">
+		<li>不用设置渐变背景大小</li>
+		<li>#4c769d 0,#4c769d 30px 一条宽度30px的渐变</li>
+		<li>#e89a1c 0,#e89a1c 60px 一条宽度60px的渐变，但是被前面30px的渐变遮住了30px，能看到的是剩下30px的渐变</li>
+	</ul>
+</body>
+</html>

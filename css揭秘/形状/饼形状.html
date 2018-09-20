@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>饼形状</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.dot:before{content:"";width:10px;height:10px;border-radius:3px;background-color: #BF435B;display:inline-block;margin-right:5px;}
+		.demo{width:200px;height:200px;border-radius:50%;overflow:hidden;background-color:#63B13E;background-image:linear-gradient(90deg,#63B13E 50%,#784B16 0);display:inline-block;vertical-align:top;margin:25px 48px;}
+		.demo1::before{background-color:#E39E34;content:"";display:block;margin-left: 50%;height:100%;transform-origin:left;transform:rotate(72deg);}
+		.demo2::before{background-color:#EA9733;content:"";display:block;margin-left: 50%;height:100%;transform-origin:left;transform:rotate(0deg);
+			animation:spin 6s linear infinite;
+		}
+		.demo3::before{background-color:#EA9733;content:"";display:block;margin-left: 50%;height:100%;transform-origin:left;transform:rotate(0deg);
+			animation:spin 6s linear infinite,bg 12s step-end infinite;
+		}
+		.demo4::before{background-color:inherit;content:"";display:block;margin-left: 50%;height:100%;transform-origin:left;transform:rotate(0deg);
+			animation:spin 6s linear infinite,bg2 12s step-end infinite;
+		}
+	
+		@keyframes spin{
+			to{transform:rotate(180deg);}
+		}
+
+		@keyframes bg{
+			50%{background:#2BB1C5;}
+		}
+
+		@keyframes bg2{
+			50%{background:#784B16;}
+		}
+
+		ul{font-size: 0;background-color:#Fff;}
+		ul li , ul li p{font-size: 15px;line-height: 25px;}
+		ul li{width:25%;display: inline-block;vertical-align: top;border:1px dashed #ddd;padding:10px 20px;}
+		
+		.note{background-color: #fff;padding:10px 30px;line-height: 30px;}
+		.svg-box{display: inline-block;vertical-align: top;margin:25px;box-shadow:0 0 0 1px #aaa;width:300px;}
+		.svg-box .note{padding:15px;line-height: 30px;}
+		.svgdemo{width:200px;height:200px;margin:20px auto;}
+		.svgcolor1{fill:#63B13E; stroke:#784B16;}
+		.svgcolor2{fill:#63B13E;}
+		.svgstroke1{stroke-width:60;}
+		.svgstroke2{stroke-width:100;}
+		.svg2{stroke-dasharray:50 10;}
+		.svg3{stroke-dasharray:0 439.8;}
+		.svg4{stroke-dasharray:50 439.8;}
+		.svg5{stroke-dasharray:120 439.8;}
+		.svg6{stroke-dasharray:250 439.8;}
+		.svg8{stroke-dasharray:78.5 314;}
+		.rotate-90{transform:rotate(-90deg);}
+		.svg9{stroke-dasharray:78.5 314;}
+		.svg10{stroke-dasharray:78.5 314;}
+		.svg11{stroke-dasharray: 0 314;animation: pie2 6s linear infinite;}
+		@keyframes pie2{
+			to{stroke-dasharray:314 314;}
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>饼形状</h2>
+		<h3>transform 动画实现</h3>
+		<div class="demo demo1"></div>
+		<div class="demo demo2"></div>
+		<div class="demo demo3"></div>
+		<div class="demo demo4"></div>
+		<ul>
+			<li>
+				静态的，1:5
+				<p class="dot">目的：将深泥色从0%-100%用动画显示出来，并且重复执行</p>
+			</li>
+			<li>
+				动态
+				<p class="dot">橙色伪类元素0deg-180deg旋转，重复进行。</p>
+			</li>
+			<li>
+				<b>分析</b>
+				<p class="dot">蓝色元素和橙色元素是同一个元素，动画执行过程中切换了颜色而已</p>
+				<p class="dot">并不是旋转了360deg实现的，是旋转的180deg，旋转了2次</p>
+				<p class="dot">橙色伪类元素0deg-180deg旋转，重复进行。</p>
+				<p class="dot">橙色元素旋转到180deg的时候，<br/>背景变为蓝色，<br/>同时定位回到原来的地方，<br/>此时会出现蓝色旋转0deg-180deg。</p>
+				<p class="dot">旋转动画：6s，背景色切换：12s,则整个动画最长周期12s，颜色切换一次，旋转执行2次。</p>
+				<p class="dot">橙色旋转1次6s，执行完这次旋转后，12s/2=6s此时橙色变为蓝色，并且伪类元素回到原始位置，执行第二次旋转，这次是蓝色伪类元素旋转180deg用时6s，一个周期动画结束。进入下一次动画，重复执行</p>
+				<p class="dot">背景色变化，采用的step-end关键帧的方式，不要过度效果，到了关键帧瞬间切换颜色。</p>
+			</li>
+			<li>
+				<b>根据前面3个的分析</b>
+				<p class="dot">将橙色改为绿色，执行0deg-180deg的动画，将深泥色从0%-50%显示出来</p>
+				<p class="dot">将蓝色改为深泥色，此时元素已回到原来位置（就是圆的右边），在执行0deg-180deg的旋转动画，看到的效果就是50%-100%的深泥色逐渐显示出来。</p>
+				<p class="dot">重复旋转和变色两个动画就达到了0%-100%逐渐显示增加的效果。</p>
+			</li>
+		</ul>
+		<h3>svg实现饼图</h3>
+		<div class="note">
+			<b class="red">需要的准备</b>
+			<p class="dot">描边原理：居中描边，一半绘制在元素内部，一半绘制在元素外部。（例如r=50,描边是20，实际r=50+20/2=60）</p>
+			<p class="dot">圆周长C=2πr=2π70≈439.8</p>
+			<p class="dot">原理：间隙设置为>=圆周长的值，此时列>=439.8就可以</p>
+			<p class="dot">描边宽度够大，半径减到很小，半径就会被描边完全遮住</p>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				svg绘制的圆，深泥色是 <span class="red">实线</span> 描边
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg2 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				r=70,stroke-width=60<br/>
+				<span class="red">虚线描边：stroke-dasharray:50 10<br/></span>
+				50：线段长度，10：间隔长度
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg3 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="red">间隔够大，就像没有边框一样</span><br/>
+				r=70,stroke-width=60<br/>
+				stroke-dasharray:0 <span class="red">439.8</span><br/>
+				0：线段长度，439.8：间隔长度
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg4 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				r=70,stroke-width=60<br/>
+				stroke-dasharray:50 439.8<br/>
+				50：线段长度，439.8：间隔长度<br/>
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg5 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				r=70,stroke-width=60<br/>
+				stroke-dasharray:120 439.8<br/>
+				120：线段长度，439.8：间隔长度<br/>
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg6 svgstroke1" r="70" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				r=70,stroke-width=60<br/>
+				stroke-dasharray:250 439.8<br/>
+				250：线段长度，439.8：间隔长度<br/>
+			</div>
+		</div>
+		<div class="note">
+			<p class="dot">下面的r=50 ,storke-width=100</p>
+			<p class="dot">圆周长C=2πr=2π50≈314</p>
+			<p class="dot">要将扇形区的起点移到最顶部，默认是在90deg方向（水品线右侧）</p>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="red">r<(stroke-width/2)描边遮住了绿色圆饼</span>
+				r=50,stroke-width=100<br/>
+				<span class="red">实线描边</span>
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg8 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				r=50,stroke-width=100<br/>
+				<span class="red">虚线描边</span>stroke-dasharray:78.5 314<br/>
+				78.5：线段长度，314：间隔长度<br/>
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo rotate-90">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor1 svg9 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="red">旋转-90deg,起点移到顶部</span><br/>
+				r=50,stroke-width=100<br/>
+				虚线描边stroke-dasharray:78.5 314<br/>
+				78.5：线段长度，314：间隔长度
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo rotate-90">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor2" r="100" cx="100" cy="100"/>
+					<circle class="svgcolor1 svg10 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="red">底部画一个绿色圆，达到圆饼效果</span><br/>
+				r=50,stroke-width=100<br/>
+				虚线描边stroke-dasharray:78.5 314<br/>
+				78.5：线段长度，314：间隔长度<br/>
+				旋转-90deg,起点移到顶部
+			</div>
+		</div>
+		<div class="svg-box">
+			<div class="svgdemo rotate-90">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor2" r="100" cx="100" cy="100"/>
+					<circle class="svgcolor1 svg11 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="red">0%-100%动画反复执行</span><br/>
+				底部画一个绿色圆，达到圆饼效果<br/>
+				r=50,stroke-width=100<br/>
+				虚线描边stroke-dasharray:78.5 314<br/>
+				78.5：线段长度，314：间隔长度<br/>
+				旋转-90deg,起点移到顶部
+			</div>
+		</div>
+		<div class="svg-box">
+			<div id="svgpie1" data-percent="25%" class="svgdemo rotate-90">
+				<svg width="100%" height="100%" viewbox="0 0 200 200">
+					<circle class="svgcolor2" r="100" cx="100" cy="100"/>
+					<circle class="svgcolor1 svgstroke2" r="50" cx="100" cy="100"/>
+				</svg>
+			</div>
+			<div class="note">
+				<span class="blue">js控制显示比例,比例数据利用data-percent</span><br/>
+				底部画一个绿色圆，达到圆饼效果<br/>
+				r=50,stroke-width=100<br/>
+				虚线描边stroke-dasharray:78.5 314<br/>
+				78.5：线段长度，314：间隔长度<br/>
+				旋转-90deg,起点移到顶部
+			</div>
+		</div>
+	</div>
+	<script>
+		window.onload = function(){
+			var el,//最外层容
+				percent, //显示百分比（此处是深褐色部分的比例）
+				r, // 圆半径
+				pie, //0%-100%变化的圆（此处是深褐色圆）
+				C, //圆周长
+				w ;//虚线长度
+			el = document.querySelector("#svgpie1");
+			pie = el.querySelectorAll("circle")[1]; 
+			percent = parseFloat(el.getAttribute("data-percent"))/100;
+			r = pie.getAttribute("r");
+			C = Math.round(2*Math.PI*r);
+			w = C*percent; 
+			pie.setAttribute("stroke-dasharray",w+" "+C);
+		}
+	</script>
+</body>
+</html>
