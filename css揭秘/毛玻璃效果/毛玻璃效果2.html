@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>毛玻璃效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{padding:50px;}
+		.note{padding:15px;background-color: #fff;width:420px;margin:0 auto;line-height: 35px;}
+		.note span{display: inline-block;width:30px;height: 30px;border-radius: 50%;background-color: #d4a413;margin-right: 5px;color:#fff;font-size: 20px;font-weight: bold;text-align: center;line-height: 30px;box-shadow:1px 1px 0 #644a0a;}
+		/* 毛玻璃效果*/
+		/****************注意，这里背景图不是fixed，否则背景图不会每个box一张，而且整个页面只有一张*********/
+		.box,.demo1::after,.demo2::after,.demo3::after{background: url(tiger.jpg) -50px -50px no-repeat;}
+		.box{width:650px;height:450px;padding:10px;position: relative;z-index: 10;display: inline-block;margin:10px;}
+		.demo{width:420px;margin:50px auto 20px;padding:20px;position: relative;border-radius:10px;box-shadow: 0 0 10px rgba(0,0,0,1);position: relative;}
+		.demo p{margin-bottom:10px;text-align:justify;text-shadow:0 1px 1px rgba(255,255,255,0.1);font-size: 20px;font-weight: bold;}
+		.demo1::after{position: absolute;left: 0;right: 0;bottom:0;top:0;content:"";z-index: -1;filter:blur(20px);}
+		.demo2::after{position: absolute;left: 0;right: 0;bottom:0;top:0;content:"";z-index: -1;filter:blur(20px);margin:-30px;}
+		.demo.demo3{overflow: hidden;}
+		.demo3::after{position: absolute;left: 0;right: 0;bottom:0;top:0;content:"";z-index: -1;filter:blur(20px);margin:-30px;}
+
+		
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="demo demo1">
+			<p>
+				1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+				人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+			</p>
+		</div>
+		<div class="note"><span>1</span>对伪元素进行模糊处理，但是内边缘模糊逐渐到透明，这个看着不舒服</div>
+	</div>
+	<div class="box">
+		<div class="demo demo2">
+			<p>
+				1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+				人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+			</p>
+		</div>
+		<div class="note"><span>2</span>对伪元素margin:-30px;内边缘不模糊了，但是模糊延伸到外边缘去了</div>
+	</div>
+	<div class="box">
+		<div class="demo demo3">
+			<p>
+				1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+				人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+			</p>
+		</div>
+		<div class="note"><span>3</span>对伪元素父容器加overflow:hidden;外边缘模糊没有了</div>
+	</div>
+	<!-- <div class="note">
+		1、body与div.box::after具有相同背景图片，<br/>
+		2、div.box::after是div.box的子元素，<br/>
+		3、div.box::after与div.box大小相同，<br/>
+		4、div.box::after进行模糊处理，不影响div.box，也不影响body，<br/>
+		5、div.box::after设置margin:-30px;
+		5、div.box设置overflow:hidden,裁剪掉超出的模糊，就不会出现边框模糊现象
+	</div> -->
+</body>
+</html>

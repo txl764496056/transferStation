@@ -31,6 +31,7 @@
 		.demo12{filter:drop-shadow(0 0 5px rgba(100,100,100,0.9));line-height: 30px;padding:15px;}
 		.demo13{position: relative;filter:drop-shadow(0 0 5px rgba(100,100,100,0.8));line-height: 30px;padding:15px;}
 		.demo14{border:10px dashed #4ABAAD;background:transparent;color:#000;line-height: 30px;filter:drop-shadow(0 0 3px rgba(100,100,100,0.9));}
+		.demo15{border:10px dashed #4ABAAD;background:transparent;color:#000;line-height: 40px;filter:drop-shadow(0 0 2px rgba(100,100,100,0.9));font-size: 28px;font-weight: bold;color:#E24ECF;text-shadow:1px 1px 1px #FAF424;}
 		.arrow::after{content:"";position: absolute;right:-40px;top:50%;margin-top: -20px;width:0;height:0;border:20px solid transparent;border-left-color:#4ABAAD;}
 		.linearbg1{background:linear-gradient(45deg,transparent 20px,#4ABAAD 0) left bottom,linear-gradient(-45deg,transparent 20px,#4ABAAD 0) right bottom,linear-gradient(-135deg,transparent 20px,#4ABAAD 0) right top,linear-gradient(135deg,transparent 20px,#4ABAAD 0) left top;background-repeat:no-repeat;background-size:51% 51%;}
 		.cutanglebg1{background:#4ABAAD;clip-path:polygon( );}
@@ -74,7 +75,8 @@
 		<div class="demo demo11">投影是矩形,应该是每个实色点有投影才对。box-shadow</div><br/>
 		<div class="demo linearbg1 demo12">4个角不会出现白色和直角投影。filter:drop-shadow( )</div>
 		<div class="demo arrow demo13">右侧箭头有投影了。filter:drop-shadow( )</div>
-		<div class="demo demo14">每个实色点有投影，并且不会出现背变成白色。filter:drop-shadow( )</div>
+		<div class="demo demo14">每个实色点有投影，并且不会出现背景变成白色。注意，文字也应为drop-shadow有了投影。filter:drop-shadow( )</div>
+		<div class="demo demo15">text-shadow与drop-shadow同时存在</div>
 	</div>
 </body>
 </html>

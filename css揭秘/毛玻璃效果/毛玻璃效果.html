@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>毛玻璃效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		
+		.note{padding:20px;background-color: #fff;width:800px;margin:0 auto;line-height: 30px;}
+		/* 毛玻璃效果*/
+		body,.box::after{background:url("tiger.jpg") 0 /cover fixed;}
+		.box{width:800px;margin:300px auto 50px;padding:50px;position: relative;border-radius:10px;box-shadow: 0 0 10px rgba(100,100,100,0.8);position: relative;overflow: hidden;background-color:rgba(0,0,0,0.1);}
+		.box::after{position: absolute;left: 0;right: 0;bottom:0;top:0;z-index: -1;content:"";filter:blur(20px);margin:-30px;}
+		.box p{margin-bottom:10px;text-align:justify;text-shadow:0 1px 1px rgba(255,255,255,0.1);font-size: 20px;font-weight: bold;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p>
+			1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+			人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+		</p>
+		<p>
+			1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+			人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+		</p>
+		<p>
+			1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+			人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+		</p>
+		<p>
+			1、There are both views and traps everywhere inlife.Make yourself strong enough to endureimpending storms.<br/>
+			人生处处是风景，也处处是陷阱。努力使自己变得强大起来，当风雨来临时才能够抵挡
+		</p>
+	</div>
+	<div class="note">
+		1、body与div.box::after具有相同背景图片，<br/>
+		2、div.box::after是div.box的子元素，<br/>
+		3、div.box::after与div.box大小相同，<br/>
+		4、div.box::after进行模糊处理，不影响div.box，也不影响body，<br/>
+		5、div.box::after设置margin:-30px;div.box内侧没有模糊边缘,但是外侧有<br/>
+		5、div.box设置overflow:hidden,裁剪掉超出的模糊，div.box的外侧模糊边缘就没有了
+	</div>
+</body>
+</html>

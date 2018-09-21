@@ -27,6 +27,7 @@
 		.shadow7{box-shadow:0 0 0 10px #000;}
 		.shadow8{box-shadow:0 0 0 20px #000;}
 		.shadow9{box-shadow:0 0 0 10px #000,inset 0 0 0 10px #000;border:3px dashed #87b3c0;}
+		.shadow9-1{box-shadow:inset 20px 20px 0 -10px #000;border:3px dashed #87b3c0;}
 		.shadow.shadow9{box-sizing:padding-box;padding:15px;}
 		.shadow10{box-shadow: 0 0 0 10px #ce7c1c,0 0 0 20px #158a8d;}
 		.shadow11{box-shadow: 5px 5px 0 5px #ce7c1c,-5px -5px 0 5px #158a8d;}
@@ -61,6 +62,7 @@
 		<div class="shadow shadow7"><span>阴影面积 10px，模糊距离 0px</span><br/>box-shadow:0 0 0 10px #000;</div>
 		<div class="shadow shadow8"><span>阴影面积 20px，模糊距离 0px</span><br/>box-shadow:0 0 0 20px #000;</div>
 		<div class="shadow shadow9"><span>外侧阴影和内侧阴影面积：10px<br/>模糊距离：0px</span><br>虚线边框3px</div>
+		<div class="shadow shadow9-1"><span>内侧阴影面积：-10px<br/>模糊距离：0px<br/>x,y位移20px,20px</span><br>虚线边框3px<br/>负数收缩，所以最后看到的是左边和上边有10px阴影</div>
 		<h3>多层阴影<b>支持逗号分隔语法，可以创建任意数量投影</b></h3>
 		<div class="shadow shadow10"><span>2层<b> 外 </b>测阴影</span><br/>box-shadow: <br/>0 0 0 10px #ce7c1c,0 0 0 20px #158a8d;</div>
 		<div class="shadow shadow11"><span>2层<b> 外 </b>测阴影</span><br/><b>x、y轴偏移(5px,5px)(-5px,-5px)</b><br/>box-shadow: <br/>5px 5px 0 5px #ce7c1c,<br/>-5px -5px 0 5px #158a8d;</div>
@@ -91,7 +93,7 @@
 			</tr>
 			<tr style="color:#ff0000;">
 				<td>spread</td>
-				<td>可选。阴影的大小</td>
+				<td>可选。阴影的大小，正数扩大阴影，负数收缩阴影。</td>
 			</tr>
 			<tr>
 				<td>color</td>

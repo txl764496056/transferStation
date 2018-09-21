@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片染色效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f5f5f5;}
+		li{list-style: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#fff;background-color: #666;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot{font-size:16px;color:#333;line-height: 32px;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #F27B2B;display:inline-block;margin-right:10px;}
+		.note{padding:10px;background-color: #fff;font-size: 14px;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;}
+		.box ul{font-size:0;}
+		.box ul li{width:280px;margin:10px 7px;font-size: 0;display: inline-block;vertical-align: top;}
+		.box ul li img{max-width:100%;}
+		img.demo1{filter:sepia(100%);}
+		img.demo2{filter:sepia(100%) saturate(4);}
+		img.demo3{filter:sepia(100%) saturate(4) hue-rotate(-70deg);}
+		li.mix1{background-color: #E925EB;}
+		img.demo4{mix-blend-mode:luminosity;}
+		li.mix2{height: 287px;background:url(tiger.jpg) top center no-repeat,linear-gradient(180deg,transparent,#E925EB) no-repeat;background-size:100% 186px,100% 186px;background-blend-mode:luminosity;position: relative;}
+		li.mix2 .note{position: absolute;bottom: 0;right:0;left:0;}
+
+		/*动画效果*/
+		li.animate1 img{transition:filter 1s;}
+		li.animate1 img:hover{filter:sepia(100%) saturate(4) hue-rotate(-70deg);}
+		li.animate2{transition:background-color 1s;}
+		li.animate2{background-image:url(tiger.jpg);background-size:100% 186px;height:267px;position: relative;background-blend-mode:luminosity;background-repeat:no-repeat;background-color: transparent;}
+		li.animate2:hover{background-color: #E925EB;}
+		li.animate2 .note{position: absolute;bottom: 0;left: 0;right: 0;}
+
+		/*表格样式*/
+		.arg{margin-top: 50px;background-color: #fff;}
+		table{color:#666;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;width:95%;margin:20px;}
+		table th{font-weight: normal;}
+		table th span{color:#ff0000;}
+		table td,table th{padding:10px;border-left:1px solid #ddd;border-top:1px solid #ddd;text-align:left;}
+		table td:first-of-type{width:30%;}
+		/* 混合模式样式 */
+		#blend-mode{font-size: 0;padding:15px;}
+		#blend-mode span{width:192px;display: inline-block;border:1px solid #eee;padding:5px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>图片染色效果</h2>
+		<h3>方法一：滤镜</h3>
+		<ul>
+			<li>
+				<img src="tiger.jpg" alt="">
+				<div class="note">原始图片</div>
+			</li>
+			<li>
+				<img class="demo1" src="tiger.jpg" alt="">
+				<div class="note">filter:sepia(100%);<br/>降低饱和度,增加橙黄色染色效果</div>
+			</li>
+			<li>
+				<img class="demo2" src="tiger.jpg" alt="">
+				<div class="note">filter:sepia(100%) saturate(4);<br/>降低饱和度>增高饱和度，增加暖金色染色效果</div>
+			</li>
+			<li>
+				<img class="demo3" src="tiger.jpg" alt="">
+				<div class="note">filter:sepia(100%) saturate(4) hue-rotate(-70deg);<br/>降低饱和度>增高饱和度>旋转色环，改变色相，呈现亮粉色效果。</div>
+			</li>
+		</ul>
+		<h3>方法二：混合模式</h3>
+		<div class="note">
+			<p>2个属性:</p>
+			<p class="dot">mix-blend-mode：可以为整个元素设置混合模式。<br/>&emsp;&emsp;要求：需要把图片包裹在一个容器中，并把容器的背景色设置为我们想要的主色调。</p>
+			<p class="dot">background-blend-mode：可以为每层背景单指定混合模式。<br/>&emsp;&emsp;
+			要求：不用图片元素，而是用&lt;div&gt;元素——把这个元素的第一层背景设置为要染色的图片，并把第二层的背景设置为我们想要的主色调。（也就是图片作为背景图）</p>
+			<p>查看所有混合属性值在后面列出来了</p>
+		</div>
+		<ul>
+			<li>
+				<img src="tiger.jpg" alt="">
+				<div class="note">原始图片</div>
+			</li>
+			<li class="mix1">
+				<img class="demo4" src="tiger.jpg" alt="">
+				<div class="note">mix-blend-mode:luminosity;混合</div>
+			</li>
+			<li class="mix2">
+				<div class="note">background-blend-mode:luminosity;混合<br/>有没有发现是从绿色到亮粉色的，因为用的透明色到亮粉色进行的混合</div>
+			</li>
+		</ul>
+		<h2>滤镜与混合模式的动画效果</h2>
+		<div class="note">
+			<p class="dot">滤镜可动画，但是混合模式不行</p>
+			<p class="dot">混合模式虽然不可以，但是我们可以利用背景色模仿动画效果</p>
+			<p class="red">将鼠标悬停在下面的图片，可以看到动画</p>
+		</div>
+		<ul>
+			<li class="animate1">
+				<img src="tiger.jpg" alt="">
+				<div class="note">filter进行动画,transition:filter 1s;</div>
+			</li>
+			<li class="animate2">
+				<div class="note">transition:background-color 1s;纯色混合动画<br/>渐变色混合动画，目前没发现好办法</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="arg box" id="blend-mode">
+		<p>混合模式类型：</p><br/>
+		<span>normal:正常</span>
+		<span>multiply:正片叠底</span>
+		<span>screen:滤色</span>
+		<span>overlay:叠加</span>
+		<span>darken:变暗</span>
+		<span>lighten:变亮</span>
+		<span>color-dodge:颜色减淡</span>
+		<span>hard-light:强光</span>
+		<span>soft-light:柔光</span>
+		<span>difference:差值</span>
+		<span>exclusion:排除</span>
+		<span>hue:色相</span>
+		<span>saturation:饱和度</span>
+		<span>color:颜色</span>
+		<span>luminosity:亮度</span>
+		<span>initial:初始</span>
+		<span>inherit:继承</span>
+		<span>unset:复原</span>
+	</div>
+
+	<div class="arg box">
+		<p>参数：</p>
+		<table cellspacing="0">
+			<th colspan="2">filter: none | blur( ) | brightness( ) | contrast( ) | drop-shadow( ) | grayscale( ) | hue-rotate( ) | invert( ) | opacity( ) | saturate( ) | sepia( ) | url( );</th>
+			<tr>
+				<td>none</td>
+				<td>默认值，没有效果。</td>
+			</tr>
+			<tr>
+				<td>blur(px)</td>
+				<td>给图像设置高斯模糊。值越大越模糊；<br/>如果没有设定值，则默认是0；这个参数可设置css长度值，但<span class="red">不接受百分比值</span>。</td>
+			</tr>
+			<tr>
+				<td>brightness(%)</td>
+				<td>给图片应用一种线性乘法，使其看起来更亮或更暗。如果值是0%，图像会全黑。值是100%，则图像无变化。其他的值对应线性乘数效果。值超过100%也是可以的，图像会比原来更亮。如果没有设定值，默认是1。</td>
+			</tr>
+			<tr>
+				<td>drop-shadow(h-shadow v-shadow blur spread color)</td>
+				<td>
+					h-shadow:y轴偏移量。&emsp;v-shadow:x轴偏移量。&emsp;这两个都接受正负值。<br/>
+					blur:模糊半径。&emsp;值越大，越模糊，则阴影会变得更大更淡。不允许负值，默认是0 (则阴影的边界很锐利)。<br/>
+					spread:这是第四个 <length>值。正值会使阴影扩张和变大，负值会是阴影缩小.若未设定，默认是0 (阴影会与元素一样大小)。<span class="red">注意</span>: Webkit, 以及一些其他浏览器 不支持第四个长度，如果加了也不会渲染。但是box-shadow这个属性值有效果<br/>
+					color:阴影颜色值
+				</td>
+			</tr>
+			<tr>
+				<td>grayscale(%)</td>
+				<td>将图像转换为灰度图像。值定义转换的比例。值为100%则完全转为灰度图像，值为0%图像无变化。值在0%到100%之间，则是效果的线性乘子。若未设置，值默认是0；</td>
+			</tr>
+			<tr>
+				<td>hue-rotate(deg)</td>
+				<td>给图像应用色相旋转。"angle"一值设定图像会被调整的色环角度值。值为0deg，则图像无变化。若值未设置，默认值是0deg。该值虽然没有最大值，超过360deg的值相当于又绕一圈。<br/><span class="red">改变成想要的颜色，参考色环图，决定旋转角度。</span></td>
+			</tr>
+			<tr>
+				<td>invert(%)</td>
+				<td>反转输入图像。值定义转换的比例。100%的价值是完全反转。值为0%则图像无变化。值在0%和100%之间，则是效果的线性乘子。 若值未设置，值默认是0。</td>
+			</tr>
+			<tr>
+				<td>opacity(%)</td>
+				<td>转化图像的透明程度。值定义转换的比例。值为0%则是完全透明，值为100%则图像无变化。</td>
+			</tr>
+			<tr>
+				<td>saturate(%)</td>
+				<td>转换图像饱和度。<span class="red">接受百分值和具体数值</span>。值定义转换的比例。值为0%则是完全不饱和，值为100%则图像无变化。</td>
+			</tr>
+			<tr>
+				<td>sepia(%)</td>
+				<td>将图像转换为深褐色。值定义转换的比例。值为100%则完全是深褐色的，值为0%图像无变化。值在0%到100%之间，则是效果的线性乘子。若未设置，值默认是0；</td>
+			</tr>
+			<tr>
+				<td>url()</td>
+				<td>URL函数接受一个XML文件，该文件设置了 一个SVG滤镜，且可以包含一个锚点来指定一个具体的滤镜元素。例如：filter: url(svg-url#element-id)</td>
+			</tr>
+			<tr>
+				<td>initial</td>
+				<td>设置属性为默认值。</td>
+			</tr>
+			<tr>
+				<td>inherit</td>
+				<td>从父元素继承该属性。</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
