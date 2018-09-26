@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>现实中的文字效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-family: "arail"}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;}
+		h3{color:#178d78;border-top:3px solid #3db7a2;border-left:40px solid #3db7a2;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;letter-spacing: 2px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+		.box{width:1200px;margin:0px auto;border:2px solid #fff;padding:20px 0;min-height: 400px;position: relative;	}
+		.note{padding:5px 30px;margin-bottom: 10px;line-height: 28px;font-size: 18px;color:#555;background-color: #eee;}
+		.note pre{tab-size:0;}
+
+		.demo{width:360px;margin:25px;display: inline-block;position: relative;vertical-align: top;font-size: 30px;padding:20px;background-color:#748e9f;}
+		.demo1 span{color:#364651;text-shadow:0 1px 1px #BBCCD8;font-weight: bold;}
+		.demo1-2 span{color:#53626D;text-shadow:0 -1px 1px #192329;}
+		.demo2 span{font-size: 120px;color:#fff;text-shadow:0 1px 0 #000,1px 0 0 #000,0 -1px 0 #000,-1px 0 0 #000;}
+		.demo2-2 span{font-size: 120px;color:#fff;text-shadow:0 5px 0 #000,5px 0 0 #000,0 -5px 0 #000,-5px 0 0 #000;}
+		.demo2-3 span{font-size: 130px;color:#fff;}
+		.demo2-3 span text{fill:currentColor;stroke:#000;stroke-width:10px;}
+		.demo2-4 span{color:#fff;font-size: 130px;}
+		.demo2-4 span text{fill:currentColor;}
+		.demo2-4 span use{stroke:#000;stroke-width:10px;}
+		.demo3,.demo3-2{background-color: #222222;}
+		.demo3 span{font-size: 120px;color:#F8B633;text-shadow:0 0 0.2rem,0 0 0.5rem;}
+		.demo3-2 span{font-size: 120px;color:#F8B633;text-shadow:0 0 0.3rem,0 0 0.8rem;}
+		.demo4 span{font-size: 120px;font-weight: bold;color:#fff;
+			text-shadow:
+			0 1px hsl(0,0%,85%),
+			0 2px hsl(0,0%,80%),
+			0 3px hsl(0,0%,75%),
+			0 4px hsl(0,0%,70%),
+			0 5px hsl(0,0%,65%),
+			0 6px hsl(0,0%,60%),
+			0 7px hsl(0,0%,55%),
+			0 8px hsl(0,0%,50%),
+			0 9px hsl(0,0%,45%),
+			0 10px hsl(0,0%,40%),
+			0 10px 5px #000; /* 阴影 */
+		}
+		.demo4-2{background-color: #750A0A;}
+		.demo4-2 span{font-size: 120px;color:#fff;
+			text-shadow:
+			1px 1px #000,2px 2px #000,
+			3px 3px #000,4px 4px #000,
+			5px 5px #000,6px 6px #000,
+			7px 7px #000,8px 8px #000,
+			8px 8px #000,9px 9px #000,
+			10px 10px #000,11px 11px #000,
+			12px 12px #000,13px 13px #000;
+		}
+	</style>
+</head>
+<body>
+	<h2>现实中的文字效果</h2>
+	<div class="box">
+
+		<h3>凸版印刷效果</h3>
+
+		<div class="demo demo1">
+			<span>There are both views and traps everywhere inlife.Make yourself strong </span>
+		</div>
+		<div class="demo demo1-2">
+			<span>There are both views and traps everywhere inlife.Make yourself strong </span>
+		</div>
+
+		<h3>空心字</h3>
+
+		<div class="demo demo2">
+			<span>css</span>
+			<div class="note"><b class="red">text-shadow</b>方案</div>
+		</div>
+		<div class="demo demo2-2">
+			<span>css</span>
+			<div class="note"><b class="red">text-shadow</b>方案:加粗描边就会出现问题</div>
+		</div>
+		<div class="demo demo2-3">
+			<span>
+				<svg width="100%" height="100%">
+					<text id="css" y="1em">css</text>
+				</svg>
+			</span>
+			<div class="note"><b class="red">svg方案</b>,给text标签设置描边属性，文字被描边遮掉了部分</div>
+		</div>
+		<div class="demo demo2-4">
+			<span>
+				<svg width="100%" height="100%">
+					<use xlink:href="#css"/>
+					<text id="css" y="1em">css</text>
+				</svg>
+			</span>
+			<div class="note"><b class="red">svg方案</b>,描边不在text标签上，在use标签上</div>
+		</div>
+
+		<h3>文字外发光效果</h3>
+
+		<div class="demo demo3">
+			<span>css</span>
+			<div class="note">
+				<b class="red">text-shadow</b>实现<br/>
+				text-shadow:0 0 0.2rem,0 0 0.5rem;<br/>
+				<b class="red">有2个模糊阴影叠加</b>
+			</div>
+		</div>
+		<div class="demo demo3-2">
+			<span>css</span>
+			<div class="note">
+				<b class="red">text-shadow</b>实现<br/>
+				text-shadow:0 0 0.3rem,0 0 0.8rem;<br/>
+				<b class="red">有2个模糊阴影叠加，设置大小不一样，效果不一样</b>
+			</div>
+		</div>
+
+		<h3>文字凸起效果</h3>
+
+		<div class="demo demo4">
+			<span>css3d</span>
+			<div class="note">
+				<pre>
+					text-shadow:
+					0 1px hsl(0,0%,85%),
+					0 2px hsl(0,0%,80%),
+					0 3px hsl(0,0%,75%),
+					0 4px hsl(0,0%,70%),
+					0 5px hsl(0,0%,65%),
+					0 6px hsl(0,0%,60%),
+					0 7px hsl(0,0%,55%),
+					0 8px hsl(0,0%,50%),
+					0 9px hsl(0,0%,45%),
+					0 10px hsl(0,0%,40%),
+					0 10px 5px #000; /* 阴影 */
+				</pre>
+			</div>
+		</div>
+		<div class="demo demo4-2">
+			<span>css3d</span>
+			<div class="note">
+				<pre>
+					text-shadow:
+					1px 1px #000,2px 2px #000,
+					3px 3px #000,4px 4px #000,
+					5px 5px #000,6px 6px #000,
+					7px 7px #000,8px 8px #000,
+					8px 8px #000,9px 9px #000,
+					10px 10px #000,11px 11px #000,
+					12px 12px #000,13px 13px #000;
+				</pre>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

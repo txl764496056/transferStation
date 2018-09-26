@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本行斑马条纹</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#fff;background-color: #666;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		.box{margin:50px;}
+		.yellow{color:#ffff00;font-size: 18px;}
+		.note{background-color:#3b7682;padding:10px 20px;color:#fff;margin-top: 20px;}
+		.demo{width:600px;display: inline-block;vertical-align: top;border:2px solid #37B8D7;margin:30px;color:#999;padding-top: 20px;}
+		.demo1 p{font-size:22px;line-height: 1.8em;}
+		.demo1 p:nth-child(even){background-color: #F4E6E6;}
+		.demo1 p:nth-child(odd){background-color: #F6F6F6;}
+		.demo2 .txt{font-size:22px;line-height: 1.8em;background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);background-size:3.6em 3.6em;}
+		.demo3 .txt{padding-top: 20px;font-size:22px;line-height: 1.8em;background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);background-size:3.6em 3.6em;}
+		.demo4 .txt{padding-top: 20px;font-size:22px;line-height: 1.8em;background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);background-size:3.6em 3.6em;background-origin:content-box;}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>文本行斑马条纹</h2>
+		<div class="demo demo1">
+			<p>1、习近平任免我驻几内亚、捷克、比利时等国大使</p>
+			<p>2、我国将全面实施预算绩效管理 意见全文 解读</p>
+			<p>3、改革开放40年：农业农村巨变 更强更美更富</p>
+			<p>4、美国对台湾出售武器装备 国防部、外交部回应</p>
+			<p>5、住建部：前8月全国棚户区改造开工465万套</p>
+			<div class="note">利用:nth-child()或者:nth-of-type()</div>
+		</div>
+		<div class="demo demo2">
+			<div class="txt">
+				1、习近平任免我驻几内亚、捷克、比利时等国大使<br/>
+				2、我国将全面实施预算绩效管理 意见全文 解读<br/>
+				3、改革开放40年：农业农村巨变 更强更美更富<br/>
+				4、美国对台湾出售武器装备 国防部、外交部回应<br/>
+				5、住建部：前8月全国棚户区改造开工465万套<br/>
+			</div>
+			<div class="note">
+				利用渐变:<br/>
+				background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);<br/>background-size:3.6em 3.6em;<br/>
+				<span class="yellow">背景大小很重要，粉色条纹高度+灰色条纹高度=3.6em</span>
+			</div>
+		</div>
+		<div class="demo demo3">
+			<div class="txt">
+				1、习近平任免我驻几内亚、捷克、比利时等国大使<br/>
+				2、我国将全面实施预算绩效管理 意见全文 解读<br/>
+				3、改革开放40年：农业农村巨变 更强更美更富<br/>
+				4、美国对台湾出售武器装备 国防部、外交部回应<br/>
+				5、住建部：前8月全国棚户区改造开工465万套<br/>
+			</div>
+			<div class="note">
+				利用渐变：<span class="yellow">一样的背景渐变，但是错位了</span>:<br/>
+				background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);<br/>background-size:3.6em 3.6em;<br/>
+				<span class="yellow">原因：</span>拥有渐变背景的元素有padding-top:20px;<br/>
+			</div>
+		</div>
+		<div class="demo demo4">
+			<div class="txt">
+				1、习近平任免我驻几内亚、捷克、比利时等国大使<br/>
+				2、我国将全面实施预算绩效管理 意见全文 解读<br/>
+				3、改革开放40年：农业农村巨变 更强更美更富<br/>
+				4、美国对台湾出售武器装备 国防部、外交部回应<br/>
+				5、住建部：前8月全国棚户区改造开工465万套<br/>
+			</div>
+			<div class="note">
+				利用渐变：<span class="yellow">解决错位</span>:<br/>
+				background:linear-gradient(180deg,#F4E6E6 50%,#F6F6F6 0);<br/>background-size:3.6em 3.6em;<br/>
+				<span class="yellow">原因：</span>拥有渐变背景的元素有padding-top:20px;<br/>
+				<span class="yellow">解决办法：</span>修改渐变原点，改为background-origin:content-box;
+			</div>
+		</div>
+	</div>
+</body>
+</html>

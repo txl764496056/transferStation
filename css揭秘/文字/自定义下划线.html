@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义下划线</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#fff;background-color: #666;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.box{margin:50px auto;width:1200px;}
+		.yellow{color:#ffff00;font-size: 18px;}
+		.red{color:#ff0000;}
+		.pre1{tab-size:2;font-size: 18px;line-height: 26px;background-color: #F4F4F4;padding:20px;}
+		.note{background-color:#3b7682;padding:10px 20px;color:#fff;margin-top: 20px;line-height: 30px;}
+		.demo{width:400px;display: inline-block;vertical-align: top;border:2px solid #37B8D7;margin:30px;color:#999;padding-top: 20px;line-height: 1.5em;font-size: 24px;}
+		.demo span{font-size: inherit;}
+		.demo1 span{text-decoration:underline;}
+		.demo1-2 span{text-decoration: underline;text-decoration-style:dashed;text-decoration-color: #ff0000;}
+		.demo2 span{border-bottom: 2px solid rgba(255,0,0,0.5);}
+		.demo3 span{box-shadow:0 2px 0 rgba(200,125,0,0.5);}
+		.demo4,.demo5{width:540px!important;}
+		.demo4 span{background:linear-gradient(#ff7721,#ff7721) no-repeat;background-size:100% 2px;background-position:0 1.1em;}
+		.demo5 span{background:linear-gradient(#ff7721,#ff7721) no-repeat;background-size:100% 2px;background-position:0 1.1em;text-shadow:0.07em 0 #fff,-0.07em 0 #fff;}
+		.demo6 span{background:linear-gradient(90deg,#ff7721 70%,transparent 0) repeat-x;background-size:0.4em 2px;background-position:0 1.1em;text-shadow:0.5em 0 #fff,-0.5em 0 #fff;}
+	</style>
+</head>
+<body>
+	<h2>自定义下划线</h2>
+	<div class="box">
+		<h3>text-decoration实现下划线</h3>
+		<pre class="pre1">
+			text-decoration-color:自定义下划线或其他装饰效果的颜色。
+			text-decoration-style:定义装饰效果的风格（比如虚线、实现、破浪线等）。
+			text-decoration-skip:指定是否避让空格、字母将部或其他对象。
+			text-underline-position:微调下划线的具体摆放位置。
+			text-decoration-line:装饰效果类型（overline、underline、line-through等）。
+			<b class="red">不是所有浏览器都支持这些属性</b>
+		</pre>
+		<div class="demo demo1">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				<i class="yellow">text-decoration</i>:underline;<br/>
+				不能改变大小、颜色
+			</div>
+		</div>
+		<div class="demo demo1-2">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				text-decoration: underline;<br/>
+				text-decoration-style:dashed;<br/>
+				text-decoration-color: #ff0000;<br/>
+				不能改变大小、颜色
+			</div>
+		</div>
+
+		<h3>border-bottom实现下划线</h3>
+		<div class="demo demo2">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				<i class="yellow">border-bottom</i>: 2px solid rgba(255,0,0,0.5);<br/>
+				可以改变大小和颜色，但是距离文字有点远<br/>
+				<b class="yellow">注意：</b>内联元素有效，块级元素无效
+			</div>
+		</div>
+
+		<h3>box-shadow实现下划线</h3>
+		<div class="demo demo3">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				<i class="yellow">box-shadow</i>:0 2px 0 rgba(200,125,0,0.5);<br/>
+				可以改变大小和颜色，但是同样距离文字有点远<br/>
+				<b class="yellow">注意：</b>内联元素有效，块级元素无效
+			</div>
+		</div>
+
+		<h3>background实现下划线</h3>
+		<div class="demo demo4">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				<i class="yellow">background</i> :linear-gradient(#ff7721,#ff7721) no-repeat;<br/>
+				<i class="yellow">background-size</i> :100% 2px;<i class="yellow">background-position</i> :0 1.1em;<br/>
+				<b class="yellow">注意：</b>下划线穿过字母时，没有避让（应该有空隙，透出背景色）<br/>
+				<b class="yellow">解决办法：</b>利用text-shadow<br/>
+				可以改变下划线，大小、颜色、距离文本距离、透明度等
+			</div>
+		</div>
+		<div class="demo demo5">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				background:linear-gradient(#ff7721,#ff7721) no-repeat;<br/>
+				background-size:100% 2px;background-position:0 1.1em;<br/>
+				注意：下划线穿过字母时，没有避让（应该有空隙，透出背景色）<br/>
+				<b class="yellow">解决办法：</b>利用text-shadow解决<br/>
+				&emsp;text-shadow:0.07em 0 #fff,-0.07em 0 #fff;<br/>
+				可以改变下划线，大小、颜色、距离文本距离、透明度等
+			</div>
+		</div>
+		<div class="demo demo6">
+			There are both views <span>and traps everywhere inlife.Make yourself strong enough to</span> endureimpending storms.
+			<div class="note">
+				<b class="yellow">虚线</b><br/>
+				background:linear-gradient(90deg,#ff7721 70%,transparent 0) repeat-x;<br/>
+				background-size:0.4em 2px;<br/>
+				background-position:0 1.1em;<br/>
+				text-shadow:0.5em 0 #fff,-0.5em 0 #fff;
+			</div>
+		</div>
+	</div>
+</body>
+</html>

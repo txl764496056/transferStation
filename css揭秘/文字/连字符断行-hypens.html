@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>连字符断行</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#fff;background-color: #666;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		.box{margin:50px;}
+		.yellow{color:#ffff00;font-size: 22px;}
+		.note{background-color:#3b7682;padding:10px 20px;color:#fff;}
+		.demo{line-height: 40px;font-size:35px;width:600px;display: inline-block;vertical-align: top;border:2px solid #37B8D7;margin:30px;color:#999;}
+		.demo1{text-align:justify;}
+		.demo2{hyphens:auto;}
+		.demo3{hyphens:manual;}
+		.demo4{text-align: justify;hyphens:auto;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h2>火狐支持<br/>hyphens: none | manual | auto</h2>
+		<div class="demo demo1">
+			There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.
+			<div class="note">文字对齐方式：text-align:justify;<br/>空白多，单词间距大，可读性差</div>
+		</div>
+		<div class="demo demo2">
+			There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.
+			<div class="note">文字对齐方式：hyphens: <b class="yellow">auto</b>;<br/>采用连字符断行方式</div>
+		</div>
+		<div class="demo demo3">
+			There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.
+			<div class="note">文字对齐方式：hyphens: <b class="yellow">manual</b>;<br/>采用连字符断行方式</div>
+		</div>
+		<div class="demo demo4">
+			There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.There are both views and traps everywhere inlife. Make yourself strong enough to endureimpending storms.
+			<div class="note">text-align:justify;与hyphens:auto;一起使用</div>
+		</div>
+	</div>
+</body>
+</html>

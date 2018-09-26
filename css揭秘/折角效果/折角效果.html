@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>折角效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f5f5f5;}
+		li{list-style: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#fff;background-color: #666;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot{font-size:16px;color:#333;line-height: 32px;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #F27B2B;display:inline-block;margin-right:10px;}
+		.note{padding:10px;background-color: #fff;font-size: 14px;}
+		.gen{text-decoration: overline;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;}
+		.demo{width:285px;margin:10px 8px;padding:10px;height: 200px;display: inline-block;vertical-align: top;color:#fff;line-height: 27px;}
+		.demo1{background:linear-gradient(45deg,#aaa 50%,transparent 0) right top no-repeat,linear-gradient(-135deg,transparent 50px,#58a 0) no-repeat;background-size:70.7px 70.7px,100% 100%;vertical-align: top;}
+		.demo2{background:linear-gradient(30deg,#aaa 50%,transparent 0) right top no-repeat,linear-gradient(-150deg,transparent 50px,#58a 0) no-repeat;background-size:100px 57.7px,100% 100%;width:520px!important;}
+		.demo3{background:linear-gradient(-150deg,transparent 50px,#58a 0) no-repeat;background-size:100% 100%;width:520px!important;position: relative;}
+		.demo3::before{background:linear-gradient(-30deg,#aaa 50%,transparent 0) no-repeat;background-size:100% 100%;transform:rotate(60deg);position: absolute;width:100px;height: 57.7px;right: 0;top: 0;content:"";}
+		.demo4{background:linear-gradient(-150deg,transparent 50px,#58a 0) no-repeat;background-size:100% 100%;width:520px!important;position: relative;border-radius: 10px;}
+		.demo4::before{background:linear-gradient(-30deg,#aaa 50%,transparent 0) no-repeat;background-size:100% 100%;transform:rotate(60deg);position: absolute;width:100px;height: 57.7px;right: 0;top: 0;content:"";border-bottom-right-radius:10px;filter:drop-shadow(3px 3px 3px #406F8F);}
+		.demo5{background:linear-gradient(-150deg,transparent 50px,#58a 0) no-repeat;background-size:100% 100%;width:520px!important;position: relative;border-radius: 10px;}
+		.demo5::before{background:linear-gradient(-30deg,#aaa 10%,#eee 35%,#bbb 50%,transparent 0) no-repeat;background-size:100% 100%;transform:rotate(60deg);position: absolute;width:100px;height: 57.7px;right: 0;top: 0;content:"";border-bottom-right-radius:10px;filter:drop-shadow(3px 3px 3px #406F8F);}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="demo demo1">
+			<b class="yellow">45度折角</b><br/>
+			蓝色渐变右上角50px<br/>
+			灰色渐变大小=50*&radic;<span class="gen">2</span>≈70.7<br/>
+			2个渐变角度绝关系如下：<br/>&emsp;|45|度+|-135|度=180度
+		</div><br/>
+		<div class="demo demo2">
+			<b class="yellow">30度折角</b><br/>
+			蓝色渐变右上角50px<br/>
+			50/灰色渐变宽=sin(30)，灰色渐变宽=50/sin(30)=50*2=100<br/>
+			50/灰色渐变高=cos(30)，灰色渐变高=50/cos(30)=(50*2)/&radic;<span class="gen">3</span>≈57.7<br/>
+			2个渐变角度绝关系如下：&emsp;|45|度+|-135|度=180度<br/>
+			<span class="yellow">折角效果不真实，需要做一次旋转</span>
+		</div>
+		<div class="demo demo3">
+			<b class="yellow">更真实的30度折角</b><br/>
+			蓝色渐变右上角50px<br/>
+			50/灰色渐变宽=sin(30)，灰色渐变宽=50/sin(30)=50*2=100<br/>
+			50/灰色渐变高=cos(30)，灰色渐变高=50/cos(30)=(50*2)/&radic;<span class="gen">3</span>≈57.7<br/>
+			2个渐变角度绝关系如下：&emsp;|45|度+|-135|度=180度<br/>
+			<span class="yellow">渐变方向-30deg，伪类旋转60deg</span>
+		</div>
+		<div class="demo demo4">
+			<b class="yellow">带圆角</b>的30度折角<br/>
+			蓝色渐变右上角50px<br/>
+			50/灰色渐变宽=sin(30)，灰色渐变宽=50/sin(30)=50*2=100<br/>
+			50/灰色渐变高=cos(30)，灰色渐变高=50/cos(30)=(50*2)/&radic;<span class="gen">3</span>≈57.7<br/>
+			2个渐变角度绝关系如下：&emsp;|45|度+|-135|度=180度<br/>
+			<span class="yellow">渐变方向-30deg，伪类旋转60deg</span>
+		</div>
+		<div class="demo demo5">
+			<b class="yellow">视觉凸起</b>的30度折角<br/>
+			蓝色渐变右上角50px<br/>
+			50/灰色渐变宽=sin(30)，灰色渐变宽=50/sin(30)=50*2=100<br/>
+			50/灰色渐变高=cos(30)，灰色渐变高=50/cos(30)=(50*2)/&radic;<span class="gen">3</span>≈57.7<br/>
+			2个渐变角度绝关系如下：&emsp;|45|度+|-135|度=180度<br/>
+			<span class="yellow">渐变方向-30deg，伪类旋转60deg</span>
+		</div>
+	</div>
+</body>
+</html>
