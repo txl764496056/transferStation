@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选用合适的鼠标光标</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		button{outline: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;width:100%;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.note{margin:20px 10px 0;background-color: #eee;padding:8px;line-height: 25px;text-align: left;}
+		.cursor-style{padding:30px;}
+		.btn1{width:60%;border-radius: 5px;height:50px;line-height: 50px;border:1px solid #aaa;color:#666;font-size: 24px;font-weight: bold;text-shadow: 0 1px #eee;box-shadow:inset 0 3px 3px #fff;background:linear-gradient(180deg,#ddd,#aaa);}
+
+		.demo{width:330px;background-color: #fff;margin:25px;display:inline-block;vertical-align:top;padding:10px;text-align: center;}
+		.demo2 button{cursor:not-allowed;}
+		.demo1 button{cursor:none;}
+		.demo3 button{cursor:crosshair;}
+		.demo4 button{cursor:wait;}
+		.demo5 button{cursor:zoom-in;}
+	</style>
+</head>
+<body>
+	<h2>选用合适的鼠标光标</h2>
+	<div class="box">
+		<h3>鼠标悬停在按钮上可看到光标样式</h3>
+		<div class="demo demo1">
+			<button class="btn1">button</button>
+			<div class="note">
+				隐藏鼠标光标 样式<br/>
+				cursor:none;<br/>
+				cursor:url(transparent.gif); /* 解决不支持这个属性的浏览器 */<br/>
+				<span class="red">将鼠标慢慢的从按钮外移动到按钮上，光标会消失</span>
+			</div>
+		</div><br/>
+		<div class="demo demo2">
+			<button class="btn1">button</button>
+			<div class="note">
+				禁用鼠标光标 样式<br/>
+				cursor:not-allowed;
+			</div>
+		</div>
+		<div class="demo demo3">
+			<button class="btn1">button</button>
+			<div class="note">
+				十字鼠标光标 样式<br/>
+				cursor:crosshair;
+			</div>
+		</div>
+		<div class="demo demo4">
+			<button class="btn1">button</button>
+			<div class="note">
+				加载鼠标光标 样式<br/>
+				cursor:wait;
+			</div>
+		</div>
+		<div class="demo demo5">
+			<button class="btn1">button</button>
+			<div class="note">
+				放大鼠标光标 样式<br/>
+				cursor:zoom-in;
+			</div>
+		</div>
+		<h3>光标属性如下，<b class="blue">下图是Mac系统中的光标样式，其他系统显示样式会不一样，但是属性值一样</b>有些浏览器不兼容部分样式</h3>
+		<div class="cursor-style">
+			<img src="mac光标样式.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

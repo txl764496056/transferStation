@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动提示-滚动条</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		button{outline: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;width:100%;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.note{margin:20px 10px 0;background-color: #fff;padding:8px;line-height: 25px;text-align: left;}
+		.box ul{margin:20px;background-color: #fff;width: 400px;height: 300px;padding:30px;overflow-y:auto;
+			background:linear-gradient(#fff,#fff),radial-gradient(at top,rgba(255,0,0,0.2),transparent 70%);
+			background-repeat:no-repeat;
+			background-size:100% 30px;border:1px solid #aaa;
+			background-attachment:local,scroll;
+
+		}
+		.box ul li{line-height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>我瞅瞅共同和吧</li>
+			<li>导航特仍然</li>
+			<li>订单后台台</li>
+			<li>就睡觉福克斯</li>
+			<li>焦点发快递就</li>
+			<li>fire粉丝欧锦</li>
+			<li>45454678</li>
+			<li>趣味题</li>
+			<li>的见覅of</li>
+			<li>日月潭</li>
+			<li>打发斯蒂芬</li>
+			<li>苦与乐</li>
+			<li>反三违</li>
+			<li>水电费规划图</li>
+			<li>反三违额娃娃</li>
+			<li>v说给他也</li>
+			<li>得到非</li>
+			<li>苦涩的</li>
+		</ul>
+		<div class="note">
+			1、滚动前是白色<br/>
+			2、滚动后是红色渐变，白色消失<br/>
+			3、白色和红色都是渐变，滚动前，白色遮住了红色
+		</div>
+	</div>
+</body>
+</html>

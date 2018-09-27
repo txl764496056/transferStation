@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自适应内部元素</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;}
+		.demo{overflow:hidden;vertical-align:top;margin:25px 48px;background-color:#fff;padding:20px;line-height: 35px;}
+		.demo figure{border:1px solid #ddd;}
+		.demo2{text-align: center;}
+		.demo2 p ,.demo2 figcaption{text-align: left;}
+		.demo2 figure{display: inline-block;}
+
+		.demo3 figure{max-width: 100%;width:min-content;margin:auto;}
+		.demo4 figure{max-width: 300px;max-width:min-content;margin:auto;}
+	</style>
+</head>
+<body>
+	<h2>自适应内部元素</h2>
+	<div class="box">
+		<h3>目的：图片及图片标题板块--宽度自适应，并且居中显示</h3>
+		<div class="demo demo1">
+			<p class="dot">默认情况：图片容器宽度不能自适应</p>
+			<figure>
+				<img src="15.jpg" alt="">
+				<figcaption>
+					djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加
+				</figcaption>
+			</figure>
+			<p>fksdfjf的父级上岛咖啡技术的附加福建省福建省看风景是父级上岛咖啡技术的附加</p>
+		</div>
+		<div class="demo demo2">
+			<p class="dot">
+				第 1 种方法：<br/>
+				(1) figure父元素设置text-align:center;<br/>
+				(2) figure设置display:inline-block;<br/>
+				(3) figure其他所有兄弟元素要设置text-align:left;
+			</p>
+			<p class="dot"><b class="red">缺点：</b>容器其他子元素（即figure的兄弟元素）都要重新设置对齐方式</p>
+			<figure>
+				<img src="15.jpg" alt="">
+				<figcaption>
+					djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加
+				</figcaption>
+			</figure>
+			<p>fksdfjf的父级上岛咖啡技术的附加福建省福建省看风景是父级上岛咖啡技术的附加</p>
+		</div>
+
+		<div class="demo demo3">
+			<p class="dot">
+				第 2 种方法：<br/>
+				(2) 给figure设置width:min-content;margin:auto;
+			</p>
+			<figure>
+				<img src="15.jpg" alt="">
+				<figcaption>
+					djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加
+				</figcaption>
+			</figure>
+			<p>fksdfjf的父级上岛咖啡技术的附加福建省福建省看风景是父级上岛咖啡技术的附加</p>
+		</div>
+
+		<div class="demo demo4">
+			<p class="dot">
+				第 3 种方法：兼容旧版本浏览器<br/>
+				(2) 给figure设置<span class="red">max-width: 300px;max-width:min-content;</span>margin:auto;
+			</p>
+			<figure>
+				<img src="15.jpg" alt="">
+				<figcaption>
+					djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加djfjf单击非绝地反击附加
+				</figcaption>
+			</figure>
+			<p>fksdfjf的父级上岛咖啡技术的附加福建省福建省看风景是父级上岛咖啡技术的附加</p>
+		</div>
+	</div>
+</body>
+</html>

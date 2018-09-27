@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>交互式图片对比控件</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		button{outline: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;width:100%;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;background:#fff;box-shadow:0 0 5px #aaa;}
+		.note{margin:20px 10px 0;background-color: #fff;padding:15px;line-height: 25px;text-align: left;}
+
+		.image-slider{position: relative;display: inline-block;border:2px solid #D12929;font-size: 0;margin:30px 60px;}
+		.image-slider>div{position: absolute;left: 0;top: 0;bottom:0;width:50%;overflow: hidden;resize:horizontal;border-right:1px solid #fff;background-color: #fff;max-width:100%;}
+		.image-slider>div pre{tab-size:0;padding:10px 0;font-size: 18px;line-height: 30px;}
+		.image-slider>div img{filter:hue-rotate(300deg);}
+
+		.demo1>div{padding:10px;line-height: 30px;}
+		.demo2>div::after{position: absolute;right: 0;bottom: 0;content:"";height:25px;width:25px;background:linear-gradient(-45deg,#fff 50%,transparent 0) no-repeat;background-clip:content-box;cursor:ew-resize;padding:5px;}
+		.demo3 input[type="range"]{position: absolute;bottom: -30px;width:100%;left:0;background-color:#fff;
+	</style>
+</head>
+<body>
+	<h2>交互式图片对比控件</h2>
+	<div class="box">
+		<div class="note">
+			<p class="dot">除了textarea，其他任何元素都可以用resize</p>
+			<p class="dot">resize : none | both | horizontal | vertical</p>
+		</div>
+		<h3>拖拽白色div右下角</h3>
+		<div class="image-slider demo1">
+			<div>
+				<pre>
+					position: absolute;left: 0;top: 0;bottom:0;
+					width:50%;<span class="red">max-width:100%;</span>overflow: hidden;
+					<span class="red">resize:horizontal;</span>
+					background-color: #fff;max-width:100%;
+				</pre>
+				<p class="dot">右下角的拖拽手柄，太小，不显眼</p>
+				<p class="dot">解决办法：利用伪类覆盖，并不会影响原有的功能</p>
+				<p class="blue">拖拽白色div右下角</p>
+			</div>
+			<img src="tiger.jpg" alt="">
+		</div>
+
+		<h3>交互式图片对比控件-完整</h3>
+		<div class="image-slider demo2">
+			<div>
+				<img src="tiger.jpg" alt="">
+			</div>
+			<img src="tiger.jpg" alt="">
+		</div>
+
+		<h3>交互式图片对比控件-js控制范围输入</h3>
+		<div class="image-slider demo3">
+			<img src="tiger.jpg" alt="">
+			<img src="tiger.jpg" alt="">
+			<!-- <input type="range" value="50"> -->
+		</div>
+	</div>
+
+	<script>
+		window.onload=function(){
+			document.querySelectorAll(".image-slider.demo3").forEach(function(slider){
+				// 创建附加的DIV元素，并用它宝珠第一个图片元素
+				var div = document.createElement("div");
+				var img = slider.querySelector("img");
+				slider.insertBefore(div,img);
+				div.appendChild(img);
+
+				// 创建滑块
+				var range = document.createElement("input");
+				range.type = "range";
+				range.oninput = function(){
+					div.style.width = this.value+"%";
+				}
+				slider.appendChild(range);
+			});
+		}
+	</script>
+</body>
+</html>

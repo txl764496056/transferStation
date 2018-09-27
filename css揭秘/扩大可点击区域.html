@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩大可点击区域</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		button{outline: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;width:100%;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;border:2px solid #fff;padding:20px 0;position: relative;font-size:0;}
+		.note{margin:20px 10px 0;background-color: #eee;padding:8px;line-height: 25px;text-align: left;}
+		.cursor-style{padding:30px;}
+		.btn1{width:80px;height:80px;color:#fff;font-size: 30px;font-weight: bold;text-align: center;line-height: 80px;background-color: #58a;border:none;border-radius: 50%;cursor:wait;overflow: visible;}
+
+		.demo{width:330px;background-color: #fff;margin:25px;display:inline-block;vertical-align:top;padding:10px;text-align: center;}
+		.demo2 button.btn1{border:20px solid transparent;box-sizing:content-box;background-clip:padding-box;box-shadow:0 0 1px 0 #aaa;}
+		.demo3 button.btn1{border:20px solid transparent;box-sizing:content-box;background-clip:padding-box;box-shadow:0 0 9px #999,inset 0 0 0 4px #E0BF32;}
+		.demo4 button.btn1{position: relative;}
+		.demo4 button.btn1::after{position: absolute;left: -20px;right:-20px;bottom:-20px;top:-20px;content:"";border-radius: 50%;cursor:wait;box-shadow:0 0 2px #000;}
+	</style>
+</head>
+<body>
+	<h2>扩大可点击区域</h2>
+	<div class="box">
+		<h3>利用边框 扩展可点击区域</h3>
+		<div class="demo demo1">
+			<button class="btn1">+</button>
+			<div class="note">
+				<span class="red">没有</span>扩展可点击区域<br/>鼠标移到蓝色上，光标会变成加载样式
+			</div>
+		</div>
+		<div class="demo demo2">
+			<button class="btn1">+</button>
+			<div class="note">
+				<span class="red">
+				1、利用边框</span>扩展可点击区域<br/>
+				2、鼠标移到蓝色上，光标会变成加载样式<br/>
+				3、这里用text-shadow实现一个灰色边框，便于观察<br/>
+				4、鼠标移到灰色边框到蓝色之间的白色区域，光标会变成加载样式
+			</div>
+		</div>
+		<div class="demo demo3">
+			<button class="btn1">+</button>
+			<div class="note">
+				<span class="red">
+				1、利用边框</span>扩展可点击区域<br/>
+				2、鼠标移到蓝色上，光标会变成加载样式<br/>
+				3、鼠标移到灰色边框到蓝色之间的白色区域，光标会变成加载样式<br/>
+				4、<span class="red">给元素加阴影时，阴影离元素太远了</span><br/>
+				5、<span class="red">给元素加边框</span>没问题
+			</div>
+		</div>
+		<h3>利用伪元素 扩展可点击区域</h3>
+		<div class="demo demo4">
+			<button class="btn1">+</button>
+			<div class="note">
+				1、伪元素在蓝色圆上面<br/>
+				2、伪元素向外伸展了20px<br/>
+				3、这里用text-shadow实现一个灰色边框，便于观察<br/>
+				4、鼠标移到灰色边框到蓝色之间的白色区域，光标会变成加载样式
+			</div>
+		</div>
+	</div>
+</body>
+</html>
