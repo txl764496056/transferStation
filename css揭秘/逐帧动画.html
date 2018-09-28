@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>逐帧动画</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:16px;}
+		body{background-color: #f0f0f0;}
+		button{outline: none;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;width:100%;}
+		h3 span{color:#333;font-size: 16px;font-weight: normal;margin-left: 20px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.dot:before{content:"";width:14px;height:14px;border-radius:3px;background-color: #ff0000;display:inline-block;margin-right:10px;}
+		.note{margin:20px 10px 0;background-color: #fff;padding:15px;line-height: 25px;text-align: left;}
+
+		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;background:#fff;box-shadow:0 0 5px #aaa;}
+		.box img{max-width: 100%;}
+		.demo{width:100px;height: 100px;background: url(images/web_heart_animation.png) left center no-repeat;background-position:0 center;border:1px solid #ddd;margin:0 80px;text-align: center;color:#8A18E2;vertical-align: top;display: inline-block;}
+		.demo2{animation:zan 1s steps(29);}
+		.ani3{animation:zan 1s steps(29);}
+		.demo4{animation:zan 1s steps(29) infinite;}
+		@keyframes zan{
+			to{background-position:-2900px center;}
+		}
+	</style>
+</head>
+<body>
+	<h2>逐帧动画steps()</h2>
+	<div class="box">
+		<div class="note">
+			<p class="dot">steps()根据指定的步进数量，把整个动画切分为多帧</p>
+			<p class="dot">帧与帧之间硬切，不会产生过渡动画</p>
+			<p class="dot">steps(number,start|end)</p>
+		</div>
+		<img src="images/web_heart_animation.png" alt="">
+		<div class="note">
+			<p class="dot">图片尺寸：2900px*100px</p>
+			<p class="dot">图片展示了29帧,steps步数=29</p>
+			<p class="dot">2900/29=100px,每帧w=h=100px</p>
+		</div>
+		<div class="demo demo1">初始状态</div>
+		<div class="demo demo2">执行一次</div>
+		<div class="demo demo3">点击执行</div>
+		<div class="demo demo4">重复执行</div>
+	</div>
+	<script>
+		window.onload = function(){
+			document.querySelector(".demo.demo3").onclick = function(){
+				this.classList.add("ani3");
+				this.addEventListener("webkitAnimationEnd",function(){
+					this.classList.remove("ani3");
+				});
+			}
+		}
+	</script>
+</body>
+</html>

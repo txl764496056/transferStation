@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>满幅背景-定宽内容</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.demo1{background:url(images/bg1.jpg) center center no-repeat;width:100%;height: 400px;padding:100px;}
+		.box{width:1200px;margin:0 auto;background-color:#fff;padding:0 30px 30px;}
+
+		.demo2{min-width:1200px;padding:100px calc(50% - 600px);background:url(images/bg1.jpg) center center no-repeat;margin-top: 50px;}
+		.demo2 h3{color:#fff;}
+		.demo2 p{color:#fff;border:1px solid rgba(255,255,255,0.5);padding:20px;background-color: rgba(0,0,0,0.3);}
+	</style>
+</head>
+<body>
+	<h2>满幅背景-定宽内容</h2>
+	<div class="demo1">
+		<div class="box">
+			<h3>最常见的办法</h3>
+			背景与内容用2个容器
+		</div>
+	</div>
+
+	<div class="demo2">
+		<h3>省html元素的办法</h3>
+		<p>背景与内容用1个容器</p>
+	</div>
+</body>
+</html>

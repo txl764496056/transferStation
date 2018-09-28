@@ -8,39 +8,540 @@
 		body{background-color: #f0f0f0;}
 		/*大标题样式*/
 		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
-		h3{color:#ff7400;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 10px;margin-top: 40px;font-size:18px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
 		.red{color:#ff0000;}
 		.blue{color:#1b1b98;}
 		.yellow{color:#ffff00;}
 		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;box-shadow: 0 0 3px #999;background-color: #fff}
-		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;}
+		.dot{line-height: 35px;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;margin-left: 30px;}
+		.note pre{tab-size:2;margin-top: 20px;line-height: 26px;}
+
 		.demo{overflow:hidden;vertical-align:top;margin:25px 48px;}
-		.demo ul{border:1px solid #ddd;height: 300px;display: flex;}
+		.demo ul{border:1px solid #ddd;height: 200px;display: flex;}
 		.demo .top{margin:0 10px;border-radius: 0 0 10px 10px;background-color: rgba(0,0,0,0.5);height: 50px;position: relative;line-height: 50px;}
 		.demo .top span,.demo .top b{position: absolute;color:#fff;font-weight: bold;top:0;font-size: 16px;}
+		.demo .top i,.demo .top em{font-size: 16px;font-style:normal;}
 		.demo .top span{left:10px;}
 		.demo .top b{right:10px;}
 		.demo .top span::before,.demo .top b::before{display: inline-block;width:20px;height:20px;background-color:#fff;border-radius: 50%;vertical-align: middle;margin-right: 5px;line-height: 18px;text-align: center;}
 		.demo .top span::before{content:"+";color:#3FB41E;font-size: 20px;}
 		.demo .top b::before{content:"x";color:#E21B1B;font-size: 18px;}
+		.demo li{font-size: 0;}
 
-		.demo1 li{background-color: #B7C846;width:100%;font-size: 0;}
+		.demo1 li{background-color: #B7C846;width:100%;}
 
+		.demo2 li{width: 33.333333%;}
+		.demo2 li:first-child{background-color: #B7C846;}
+		.demo2 li:nth-child(2){background-color:#D1E597; }
+		.demo2 li:last-child{background-color:#CDEEE9; }
+
+		.demo3 li{width: 25%;}
+		.demo3 li:first-child{background-color: #B7C846;}
+		.demo3 li:nth-child(2){background-color:#D1E597; }
+		.demo3 li:nth-child(3){background-color:#CDEEE9; }
+		.demo3 li:last-child{background-color:#73B6AC; }
+
+		.demo3-2 li{width: 20%;}
+		.demo3-2 li:first-child{background-color: #B7C846;}
+		.demo3-2 li:nth-child(2){background-color:#D1E597; }
+		.demo3-2 li:nth-child(3){background-color:#CDEEE9; }
+		.demo3-2 li:nth-child(4){background-color:#73B6AC; }
+		.demo3-2 li:last-child{background-color:#CE4A6F; }
+
+		.demo4 li{width: 11.11111%;}
+		.demo4 li:first-child{background-color: #B7C846;}
+		.demo4 li:nth-child(2){background-color:#D1E597; }
+		.demo4 li:nth-child(3){background-color:#CDEEE9; }
+		.demo4 li:nth-child(4){background-color:#73B6AC; }
+		.demo4 li:nth-child(5){background-color:#7FAABD; }
+		.demo4 li:nth-child(6){background-color:#BF5C5C; }
+		.demo4 li:nth-child(7){background-color:#DA7938; }
+		.demo4 li:nth-child(8){background-color:#B7CD7B; }
+		.demo4 li:last-child{background-color:#E4D55E; }
+		
+		.demodis .top i,.demodis1 .top b{display: none;}
+		
+		/* 利用选择器选择指定数量的列表进行设置 */
+		/* 选中只有一个子元素li的列表，并将删除按钮隐藏*/
+		.demos ul li:only-child b,
+		/* 选中4~6个子元素li的列表，并将color文字隐藏 */
+		.demos ul li:first-child:nth-last-child(n+4) em,
+		.demos ul li:first-child:nth-last-child(n+4):nth-last-child(-n+6)~li em,
+		/* 选中>7个子元素li的列表，并将所有文字隐藏 */
+		.demos ul li:first-child:nth-last-child(n+7) i,
+		.demos ul li:first-child:nth-last-child(n+7) em,
+		.demos ul li:first-child:nth-last-child(n+7)~li i,
+		.demos ul li:first-child:nth-last-child(n+7)~li em
+		{display: none;}
+
+		/* 选择器分析案例 样式*/
+		.cubic{margin:0 48px;}
+		.cubic ul{display: flex;}
+		.cubic ul li{width:60px;height: 60px;background-color: #C5C5C5;border-radius: 10px;color:#fff;font-size: 24px;font-weight: bold;margin:10px;text-align: center;line-height: 60px;}
+		/* 选中只有1个子元素(li)的列表 所有表项 ，背景设为红色 */
+		.cubic ul li:only-child{background-color: #F46F6F;} 
+		/* 选中有且仅有4个子元素(li)的列表 的所有列表项 ，背景设为紫色 */
+		.cubic ul li:first-child:nth-last-child(4),.cubic ul li:first-child:nth-last-child(4)~li{background-color: #8B49D6;} 
+		/* 选中有5~7个子元素(li)的列表 的所有列表项，背景色变化黄色*/
+		.cubic ul li:first-child:nth-last-child(n+5):nth-last-child(-n+7),
+		.cubic ul li:first-child:nth-last-child(n+5):nth-last-child(-n+7)~li{background-color: #D5C450}
+		/* 选中有>=10个子元素(li)的列表 的所有列表项，背景色变化橙色*/
+		.cubic ul li:first-child:nth-last-child(n+10),.cubic ul li:first-child:nth-last-child(n+10)~li{background-color: #F68A33;}
+		.cubic p.dot::before{margin-left: 0;background-color: }
+
+		/*表格样式*/
+		.arg{margin-top: 50px;background-color: #fff;}
+		table{color:#666;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;width:90%;margin:20px;}
+		table th{font-weight: normal;}
+		table th span{color:#ff0000;}
+		table td,table th{padding:10px;border-left:1px solid #ddd;border-top:1px solid #ddd;text-align:left;}
+		table td:first-of-type{width:22%;}
+		table tr:nth-child(2n){background-color: #f1f1f1;}
 	</style>
 </head>
 <body>
 	<h2>根据兄弟元素的数量来设置样式</h2>
 	<div class="box">
-		<div class="demo demo1">
+		<p class="dot">一个子元素时：不显示右侧删除按钮</p>
+		<p class="dot">子元素较多时，不显示按钮文字</p>
+		<!-- 原始方法，逐个设置 start -->
+		<h3>每个列表按钮独立设置</h3>
+		<div class="demo demo1 demodis1">
 			<ul>
 				<li>
 					<div class="top">
-						<span>add color</span>
-						<b>delete color</b>
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
 					</div>
 				</li>
 			</ul>
 		</div>
+		<div class="demo demo2">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="demo demo3">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="demo demo4 demodis">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add color</i></span>
+						<b><i>delete color</i></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- 原始方法，逐个设置 end -->
+		<h2>解决办法，不需要独立设置</h2>
+		<!-- 参数说明 start -->
+		<p class="dot">利用选择器选择 包含指定数量的子元素 列表进行设置。</p>
+		<table cellspacing="0">
+			<tr>
+				<td>:only-child </td>
+				<td>p:only-child</td>
+				<td>p是唯一子元素</td>
+			</tr>
+			<tr>
+				<td>:first-child </td>
+				<td>p:first-child </td>
+				<td>p是第一个元素</td>
+			</tr>
+			<tr>
+				<td>:last-child </td>
+				<td>p:last-child </td>
+				<td>p是最后一个元素</td>
+			</tr>
+			<tr>
+				<td>:nth-child(n)</td>
+				<td>p:nth-child(n)</td>
+				<td>p是第n个子元素</td>
+			</tr>
+			<tr>
+				<td>:nth-last-child(n)</td>
+				<td>p:nth-last-child(n)</td>
+				<td><span class="red">逆向</span>数，p是第n个子元素</td>
+			</tr>
+		</table>
+		<!-- 参数说明 end -->
+		<!-- 选择器分析 start -->
+		<p class="dot">:only-child 等效于 :first-child:last-child 等效于 :first-child:nth-lasth-child(1)</p>
+		<p class="dot">:last-child 等效于 :nth-last-child(1)。</p>
+		<p class="dot">
+			:first-child:nth-last-child(4)。<br/>
+			&emsp;&emsp;&emsp;（1）正向数第1个，逆向数第4个。<br/>
+			&emsp;&emsp;&emsp;（2）计算出该列表只有4个子元素。<br/>
+			&emsp;&emsp;&emsp;（3）但这个表达式只选中第一个子元素。<br/>
+			&emsp;&emsp;&emsp;（4）选中所有子元素，且只有4个子元素，<br/>
+			&emsp;&emsp;&emsp;&emsp;&emsp;li:first-child:nth-last-child(4), //选中第4个<br/>
+			&emsp;&emsp;&emsp;&emsp;&emsp;li:first-child:nth-last-child(4)~li //不包含第4个
+		</p>
+		<p class="dot">:nth-child(n+b)，选择第b个开始的所有子元素。:nth-child(n+4)，第4个及后面的所有子元素</p>
+		<p class="dot">li:first-child:nth-last-child(n+4)，li:first-child:nth-last-child(n+4)~li。选择子元素>=4项的列表,并选中这个列表的所有列表项</p>
+		<p class="dot">li:first-child:nth-last-child(-n+4)，li:first-child:nth-last-child(-n+4)~li。仅当里表中<=4个列表项时，选中所有列表项。</p>
+		<p class="dot">li:first-childl:nth-last-child(n+2) , //选中第2项<br/>
+			&emsp;&emsp;&emsp;li:first-childl:nth-last-child(n+2):nth-last-child(-n+6)~li，//不包含第2项<br/>
+			&emsp;&emsp;&emsp;2<=列表项<=6时，选中列表，并选中他的所有列表项</p>
+		<div class="cubic">
+			<h3>下面有7个列表</h3>
+			<p class="dot">/* 选中只有1个子元素(li)的列表 所有表项 ，背景设为红色 */ <br/>.cubic ul li:only-child{background-color: #F46F6F;}</p>
+			<ul class="cubic1">
+				<li>1</li>
+			</ul>
+			<p class="dot">未被选中的列表是灰色</p>
+			<ul class="cubic2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			<p class="dot">/* 选中有且仅有4个子元素(li)的列表 的所有列表项 ，背景设为紫色 */<br/>
+		.cubic ul li:first-child:nth-last-child(4),.cubic ul li:first-child:nth-last-child(4)~li{background-color: #8B49D6;} </p>
+			<ul class="cubic3">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			<p class="dot">
+				/* 选中有5~7个子元素(li)的列表 的所有列表项，背景色变化黄色*/<br/>
+			.cubic ul li:first-child:nth-last-child(n+5):nth-last-child(-n+7),
+			.cubic ul li:first-child:nth-last-child(n+5):nth-last-child(-n+7)~li{background-color: #D5C450}
+			</p>
+			<ul class="cubic4">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<ul class="cubic5">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<ul class="cubic6">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+			</ul>
+			<p class="dot">未被选中的列表是灰色</p>
+			<ul class="cubic7">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+			</ul>
+			<p class="dot">
+				/* 选中有>=10个子元素(li)的列表 的所有列表项，背景色变化橙色*/<br/>
+				.cubic ul li:first-child:nth-last-child(n+10),.cubic ul li:first-child:nth-last-child(n+10)~li{background-color: #F68A33;}
+		.cubic p.dot::before{margin-left: 0;background-color: }
+			</p>
+			<ul class="cubic8">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+			</ul>
+			<ul class="cubic9">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+			</ul>
+		</div>
+		<!-- 选择器分析 end -->
+		<!-- 范围选择方法 start -->
+		<div class="demo demo1 demos">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="demo demo2 demos">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="demo demo3 demos">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="demo demo3-2 demos">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="demo demo4 demos">
+			<ul>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+				<li>
+					<div class="top">
+						<span><i>add </i><em>color</em></span>
+						<b><i>delete </i><em>color</em></b>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- 范围选择方法 end -->
+		<!-- 范围选择方法 代码展现 start -->
+		<div class="note">
+			<p class="dot">上述筛选代码</p>
+			<pre>
+				/* 选中只有一个子元素li的列表，并将删除按钮隐藏*/
+				.demos ul li:only-child b,
+				/* 选中4~6个子元素li的列表，并将color文字隐藏 */
+				.demos ul li:first-child:nth-last-child(n+4) em,
+				.demos ul li:first-child:nth-last-child(n+4):nth-last-child(-n+6)~li em,
+				/* 选中>7个子元素li的列表，并将所有文字隐藏 */
+				.demos ul li:first-child:nth-last-child(n+7) i,
+				.demos ul li:first-child:nth-last-child(n+7) em,
+				.demos ul li:first-child:nth-last-child(n+7)~li i,
+				.demos ul li:first-child:nth-last-child(n+7)~li em
+				{display: none;}
+			</pre>
+		</div>
+		<!-- 范围选择方法 代码展现 end -->
 	</div>
 </body>
 </html>

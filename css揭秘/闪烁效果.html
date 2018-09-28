@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闪烁效果</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;box-shadow: 0 0 3px #999;background-color: #fff;font-size: 0;}
+		.dot{line-height: 25px;font-size: 16px;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;}
+		.note{background-color: #fff;font-size: 16px;padding:5px;color:#000;font-weight: normal;text-align: left;line-height: 25px;}
+
+		.demo{background-color: #000;font-size: 40px;color:#fff;text-align: center;line-height: 80px;width:278px;display: inline-block;vertical-align: top;margin:0 10px;font-weight: bold;border:1px solid #ddd;}
+		.demo1{animation:blink-smooth 0.5s 6 alternate;}
+		.demo2{animation:blink1 0.5s 3 steps(1);}
+		.demo3{animation:blink1 0.5s 3 steps(2);}
+		.demo4{animation:blink2 0.5s 3 steps(1);}
+		@keyframes blink-smooth{
+			to{color:transparent;}
+		}
+		@keyframes blink1{
+			to{color:transparent;}
+		}
+		@keyframes blink2{
+			50%{color:transparent;}
+		}
+	</style>
+</head>
+<body>
+	<h2>闪烁效果</h2>
+	<div class="box">
+		<div class="demo demo1">
+			<div class="note">
+			<b class="red">	过渡闪烁动画</b>	
+			</div>
+			闪烁
+		</div>
+		<div class="demo demo2">
+			<div class="note">	
+				<b class="red">	非过渡闪烁动画</b>，但是并无动画出现<br/>
+				<span class="red">原因：</span>
+				<p class="dot">steps(1)等同于steps(1,end)</p>
+				<p class="dot">动画会在一次步进中完成</p>
+				<p class="dot">	所以颜色值的切换会发生在动画周期的末尾。也就是白色贯穿整个动画周期，透明色只再动画结尾瞬间点出现（这个时间点非常短）</p>
+			</div>
+			闪烁
+		</div>
+		<div class="demo demo3">
+			<div class="note">	
+				<b class="red">	非过渡闪烁动画</b>要么半透明到纯透明，要么半透明到实色<br/>
+				<span class="red">原因：</span>
+				<p class="dot">steps(2)</p>
+				<p class="dot">无法通过配置steps()来让这个切换动作发生在动画周期的中间点（只能发生在起点或终点）</p>
+				<p class="dot"><span class="red">解决办法：</span>调整动画关键帧，让切换发生在50%处。</p>
+			</div>
+			闪烁
+		</div>
+		<div class="demo demo4">
+			<div class="note">	
+				<b class="red">	非过渡闪烁动画</b>动画正常<br/>
+			</div>
+			闪烁
+		</div>
+	</div>
+</body>
+</html>
