@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>状态平滑的动画</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;box-shadow: 0 0 3px #999;background-color: #fff;font-size: 0;}
+		.note{background-color: #fff;padding:10px;}
+		.dot{line-height: 30px;font-size: 16px;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;margin-left: 30px;}
+
+		.demo{width:500px;margin:30px;position: relative;display: inline-block;vertical-align:top;padding-top: 300px;background:url(images/bg1.jpg) left top no-repeat;}
+		.demo1:hover{animation:panoramic 15s linear infinite alternate;}
+		.demo2{animation:panoramic 15s linear infinite alternate;animation-play-state:paused;}
+		.demo2:hover{animation-play-state:running;}
+
+		@keyframes panoramic{
+			to{background-position:100% 0;}
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p class="dot"><b class="red">目的：</b>鼠标放上去时，动画开始，移开动画停止</p>
+		<p class="dot">鼠标移开，默认情况下，动画会立即停止播放，并生硬地跳回开始状态。</p>
+		<div class="demo demo1">
+			<div class="note">
+				<span class="red">问题：</span>
+				<p class="dot">鼠标放上去动画开始，没有任何问题，但是鼠标移开，动画立即结束，并且生硬回到初始状态。</p>
+			</div>
+		</div>
+		<div class="demo demo2">
+			<div class="note">
+				<span class="red">问题：</span>
+				<p class="dot">暂停、继续动画都会一直存在，不会生硬跳回去。</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

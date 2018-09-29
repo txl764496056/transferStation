@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打字动画</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{width:1200px;margin:50px auto;padding:20px 0;position: relative;font-size:0;box-shadow: 0 0 3px #999;background-color: #fff;font-size: 0;}
+		.dot{line-height: 25px;font-size: 16px;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;}
+		.note{background-color: #F6F6F6;font-size: 16px;padding:5px;color:#000;font-weight: normal;text-align: left;line-height: 25px;}
+
+		.demo{font-size: 40px;width:300px;display: inline-block;vertical-align: top;margin:10px;border:1px solid #ddd;padding:10px;}
+		.demo h4{color:#000;font-size: 20px;white-space:nowrap;overflow: hidden;font-family:"Courier New","Terminal","宋体"!important;}
+		.demo1 h4{width:8em;animation:typing 6s;}
+		.demo2 h4{width:15ch;animation:typing 6s steps(15);}
+		.demo3 h4{width:15ch;animation:typing 6s steps(15),caret 1s steps(1) infinite;border-right:1px solid #000;}
+		.demojs{width:570px;}
+		.demojs h4{width:15ch;animation:typing 6s steps(15),caret 1s steps(1) infinite;border-right:1px solid #000;}
+		@keyframes typing{
+			from{width:0;}
+		}
+		@keyframes caret{
+			50%{border-right-color:transparent;}
+		}
+	</style>
+</head>
+<body>
+	<h2>打字动画</h2>
+	<div class="box">
+		<p class="dot">字体要设置为等宽字体</p>
+		<div class="demo demo1">
+			<h4>css is awesome!</h4>
+			<div class="note">
+				<span class="red">问题：</span>
+				<p class="dot">动画是平滑的，不是逐字打印的</p>
+				<p class="dot">单位em比px好一些，但是不够理想</p>
+			</div>
+		</div>
+		<div class="demo demo2">
+			<h4>css is awesome!</h4>
+			<div class="note">
+				<span class="red">用单位ch：</span>
+				<p class="dot">ch：表示“0”字形的宽度。在等宽字体中，“0”字形的宽度和其他所有字形的宽度是一样的。</p>
+			</div>
+		</div>
+		<div class="demo demo3">
+			<h4>css is awesome!</h4>
+			<div class="note">
+				<span class="red">加闪烁光标：</span>
+				<p class="dot">border-right模拟光标</p>
+				<span class="red">问题：</span>
+				<p class="dot">不灵活，文字改变，就要同时修改标题宽度和动画步进。利用JS解决这个问题</p>
+			</div>
+		</div>
+		<div class="demo demojs">
+			<h4>css is awesome! css is awesome!</h4>
+			<div class="note">
+				<span class="red">js 解决宽度限制：</span>
+				<p class="dot">js灵活设置宽度和步进</p>
+			</div>
+		</div>
+		<div class="demo demojs">
+			<h4>css is awesome! css is awesome!css is awesome!</h4>
+			<div class="note">
+				<span class="red">js 解决宽度限制：</span>
+				<p class="dot">js灵活设置宽度和步进</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		window.onload = function(){
+			document.querySelectorAll(".demojs h4").forEach(function(h4){
+				var len = h4.textContent.length;
+				var s = h4.style;
+				s.width = len+"ch";
+				s.animationTimingFunction = "steps("+len+"),steps(1)";
+			});
+		}
+	</script>
+</body>
+</html>

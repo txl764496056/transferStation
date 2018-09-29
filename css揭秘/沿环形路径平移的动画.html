@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>沿环形路径平移的动画</title>
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box;font-size:18px;}
+		body{background-color: #f0f0f0;padding:50px;}
+		/*大标题样式*/
+		h2{text-align:center;margin:50px auto;font-weight: normal;color:#666;background-color: #Fff;padding:20px 0;letter-spacing: 2px;font-size:22px;}
+		h3{color:#000;border-top:3px solid #ff7400;border-left:40px solid #ff7400;padding:5px 10px;margin-bottom: 30px;margin-top: 40px;font-size:18px;letter-spacing: 5px;}
+		li{list-style: none;}
+		.red{color:#ff0000;}
+		.blue{color:#1b1b98;}
+		.yellow{color:#ffff00;}
+		.box{margin:50px auto;padding:20px;position: relative;font-size:0;box-shadow: 0 0 3px #999;background-color: #fff;}
+		.box pre{tab-size:1;background-color: #000;color:#39B5CB;padding:10px;line-height: 20px;margin:20px;}
+		.dot{line-height: 25px;font-size: 16px;}
+		.dot:before{content:"";width:15px;height:15px;border-radius:3px;background-color: #FF1B47;display:inline-block;margin-right:5px;}
+
+		.path{width:400px;height: 400px;background-color: #d3882c
+			;border-radius:50%;position:relative;border:20px solid #d3882c;box-sizing:content-box;display: inline-block;vertical-align: top;margin:10px 30px;}
+		.avatar{width:50px;height: 50px;border-radius: 50%;position: absolute;left:calc(50% - 25px);top:0;}
+		.avatar img{width: 100%;height: 100%;border-radius: inherit;}
+		
+		.demo1 .avatar,.demo2 .avatar{animation:spin 12s linear infinite;transform-origin:50% 200px;}
+		/*头像反向执行*/
+		.demo2 .avatar img{animation:inherit;animation-direction:reverse;}
+
+		@keyframes spin{
+			to{transform:rotate(1turn);} /* 1turn = 1圈 = 360deg */
+		}
+
+		.demo3 .avatar{animation:spin2 12s linear infinite;transform-origin:0 0 ;}
+		.demo3 .avatar img{animation:inherit;animation-name:spin2-reverse;transform-origin:0 0 ;}
+
+		/* div.avatar 动画*/
+		@keyframes spin2{
+			from{
+				transform:translate(50%,200px) rotate(0turn) translate(-50%,-200px);
+			}
+			to{
+				transform:translate(50%,200px) rotate(1turn) translate(-50%,-200px);
+			}
+		}
+		/* img 反向动画 */
+		@keyframes spin2-reverse{
+			from{
+				transform:translate(50%,50%) rotate(1turn) translate(-50%,-50%);
+			}
+			to{
+				transform:translate(50%,50%) rotate(0turn) translate(-50%,-50%);
+			}
+		}
+		
+		/* 去除包裹容器 */
+		.demo4 img.avatar{animation:spin3 12s linear infinite;}
+		 @keyframes spin3{
+			from{
+				transform:translate(50%,200px)
+						   rotate(0turn)
+						   translate(-50%,-200px)
+						   translate(50%,50%)
+						   rotate(1turn)
+						   translate(-50%,-50%);
+			}
+			to{
+				transform:translate(50%,200px)
+						   rotate(1turn)
+						   translate(-50%,-200px)
+						   translate(50%,50%)
+						   rotate(0turn)
+						   translate(-50%,-50%);
+			}
+		} 
+
+		/* 简化代码 */
+		.demo5 img.avatar{animation:spin4 12s linear infinite;}
+		 @keyframes spin4{
+			from{
+				transform:translateY(200px) translateY(-50%)
+						   rotate(0turn)
+						   translateY(-200px) translateY(50%)
+						   rotate(1turn);
+			}
+			to{
+				transform:translateY(200px) translateY(-50%)
+						   rotate(1turn)
+						   translateY(-200px) translateY(50%)
+						   rotate(0turn);
+			}
+		} 
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p class="dot">内层动画懂父元素继承所有动画属性，然后把动画名覆盖掉，就不用每次修改2处动画属性了 。<br/>animation:inherit;animation-name:spin-reverse;</p>
+		<p class="dot">内层动画反向执行（头像相对于包裹容器反向旋转）。<br/>animation:inherit;animation-direction:reverse;</p>
+		<p class="dot">元素变换时，坐标也跟着变换，并不是静止的。</p>
+	</div>
+	<div class="path demo1">
+		<div class="avatar">
+			<img src="images/photo.jpg" alt="">
+		</div>
+	</div>
+	<div class="path demo2">
+		<div class="avatar">
+			<img src="images/photo.jpg" alt="">
+		</div>
+	</div>
+	<div class="box">
+		<p class="dot">利用平移旋转实现</p>
+		<pre>
+			/* div.avatar 动画*/
+			@keyframes spin2{
+
+				from{
+					transform:translate(50%,200px) rotate(0turn) translate(-50%,-200px);
+				}
+
+				to{
+					transform:translate(50%,200px) rotate(1turn) translate(-50%,-200px);
+				}
+
+			}
+
+			/* img 反向动画 */
+			@keyframes spin2-reverse{
+
+				from{
+					transform:translate(50%,50%) rotate(1turn) translate(-50%,-50%);
+				}
+
+				to{
+					transform:translate(50%,50%) rotate(0turn) translate(-50%,-50%);
+				}
+
+			}
+		</pre>
+	</div>
+	<div class="path demo3">
+		<div class="avatar">
+			<img src="images/photo.jpg" alt="">
+		</div>
+	</div>
+	<div class="box">
+		<p class="dot">整合上面代码，去除包裹容器，所有动画都在img上</p>
+		<pre>
+			.demo4 img.avatar{animation:spin3 12s linear infinite;}
+
+			 @keyframes spin3{
+
+				from{
+					transform:translate(50%,200px)
+							   rotate(0turn)
+							   translate(-50%,-200px)
+							   translate(50%,50%)
+							   rotate(1turn)
+							   translate(-50%,-50%);
+				}
+
+				to{
+					transform:translate(50%,200px)
+							   rotate(1turn)
+							   translate(-50%,-200px)
+							   translate(50%,50%)
+							   rotate(0turn)
+							   translate(-50%,-50%);
+				}
+
+			}
+		</pre>
+	</div>
+	<div class="path demo4">
+		<img src="images/photo.jpg" class="avatar" alt="">
+	</div>
+	<div class="box">
+		<p class="dot">再简化代码</p>
+		<pre>
+			/* 简化代码 */
+			.demo5 img.avatar{animation:spin4 12s linear infinite;}
+			 @keyframes spin4{
+
+				from{
+					transform:translateY(200px) translateY(-50%)
+							   rotate(0turn)
+							   translateY(-200px) translateY(50%)
+							   rotate(1turn);
+				}
+
+				to{
+					transform:translateY(200px) translateY(-50%)
+							   rotate(1turn)
+							   translateY(-200px) translateY(50%)
+							   rotate(0turn);
+				}
+
+			} 
+		</pre>
+	</div>
+	<div class="path demo5">
+		<img src="images/photo.jpg" class="avatar" alt="">
+	</div>
+
+</body>
+</html>
