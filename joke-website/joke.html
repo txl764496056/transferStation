@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>状态列表</title>
+	<link rel="stylesheet" href="iconfont/demo.css">
+	<link rel="stylesheet" href="css/layer-component.css">
+	<link rel="stylesheet" href="css/vue.css">
+</head>
+<body>
+	<div id="app" v-cloak>
+		<header id="joke-header">
+			<div class="container">
+				<ul>
+					<li class="selected"><a href="#">首页</a></li>
+					<li><a href="#">我的</a></li>
+				</ul>
+				<div v-bind:class="{dis:loginDis}" class="login-register">
+					<a href="#" class="login" @click="loginRegisterMask">登录</a>
+					<a href="#" class="register" @click="loginRegisterMask">注册</a>
+				</div>
+				<div v-bind:class="{dis:!loginDis}" class="has-logged">
+					<span>{{username}}</span>
+					<a href="#" @click="signOut">退出</a>
+				</div>
+			</div>
+		</header>
+		
+		<!-- 弹窗start -->
+		<joke-layer :layershow="maskData.show" ref="jokelayer">
+			<div class="login-msg" id="mask0" slot="joke-layer-content">
+				<input type="text" v-model="username" @keyup="checkVal($event,'username')" id="username" placeholder="请输入3-15位的数字、字母、汉字、下划线">
+				<label for="username" v-show="!maskData.nameTips">用户名不合法，请输入3-15位的数字、字母、汉字、下划线</label>
+				<input type="password" v-model="password" @keyup="checkVal($event,'password')" id="password" placeholder="请输入4-6位数字、字母、下划线">
+				<label for="password" v-show="!maskData.passTips">密码不合法，请输入4-6位数字、字母、下划线的密码</label>
+				<div class="login-btn">
+					<!-- 用户名和密码都验证通过才能进行登录或者注册 -->
+					<button :disabled="!maskData.nameTips||!maskData.passTips" @click="userLogin">登录</button>
+					<button :disabled="!maskData.nameTips||!maskData.passTips">注册</button>
+				</div>
+			</div>
+		</joke-layer>
+		<!-- 弹窗end -->
+	</div>
+	<script src="js/vue.min.js"></script>
+	<!-- <script src="js/vue-resource.js"></script> -->
+	<script src="js/axios.js"></script>
+	<script src="js/layer-component.js"></script>
+	<script src="js/joke.js"></script>
+</body>
+</html>

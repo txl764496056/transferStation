@@ -1,0 +1,40 @@
+{
+	"list":[
+		{
+			"jokeid":1,
+			"username":"微笑感染人",
+			"userpic":"images/1.png",
+			"commentcon":"微笑感染人微笑感染人微笑感染人微笑感染人微笑感染人微笑感染人"
+		},
+		{
+			"jokeid":2,
+			"username":"多情自古空余恨",
+			"userpic":"images/2.jpeg",
+			"commentcon":"多情自古空余恨多情自古空余恨多情自古空余恨多情自古空余恨多情自古空余恨多情自古空余恨"
+		},
+		{
+			"jokeid":1,
+			"username":"浅色夏墨",
+			"userpic":"",
+			"commentcon":"浅色夏墨浅色夏墨浅色夏墨浅色夏墨浅色夏墨浅色夏墨浅色夏墨浅色夏墨浅色夏墨"
+		},
+		{
+			"jokeid":3,
+			"username":"迷人小天后",
+			"userpic":"",
+			"commentcon":"迷人小天后迷人小天后迷人小天后迷人小天后迷人小天后迷人小天后迷人小天后"
+		},
+		{
+			"jokeid":4,
+			"username":"You Face",
+			"userpic":"images/7.jpg",
+			"commentcon":"You FaceYou FaceYou FaceYou FaceYou FaceYou Face"
+		},
+		{
+			"jokeid":4,
+			"username":"甜味仙女",
+			"userpic":"images/12.jpg",
+			"commentcon":"甜味仙女甜味仙女甜味仙女甜味仙女甜味仙女甜味仙女甜味仙女甜味仙女"
+		}
+	]
+}
