@@ -109,6 +109,12 @@
                 start:function(){
                     let _this = this;
 
+                    if(timer){
+                       return ; 
+                    }
+
+                    console.log("start");
+
                     clearInterval(timer);
 
                     if(_this.first){
