@@ -94,9 +94,6 @@
                 });
 			},
 			mounted:function(){
-                
-                let _this = this;
-                // _this.init();
 
 			},
 			methods:{
@@ -109,11 +106,9 @@
                 start:function(){
                     let _this = this;
 
-                    if(timer){
+                    if(timer){ //滚动没有停止，就不能再次点开始
                        return ; 
                     }
-
-                    console.log("start");
 
                     clearInterval(timer);
 
@@ -140,25 +135,25 @@
                 },
                 stop:function(){
 
+                    let _this = this;
+
                     clearInterval(timer);
                     timer = null;
 
                     (curPos % itemWidth == 0 - itemWidth / 2) && (curPos = curPos - itemWidth / 2);
 
-                    // var selected  = _this.getCurIdx();
+                    var selected  = _this.getCurIdx();
 
-                    // _this.setCurIdx(selected);
+                    _this.setCurIdx(selected);
                 },
-                setCurIdx:function(){
+                setCurIdx:function(idx){
                     curPos = (0 - idx) * itemWidth;
 
                     var $items = $("#lottery li img"),
                         imgUrl = $items.eq(idx + 3).attr("src");
 
                     $content.css("left", curPos);
-                    // $hero.attr("src", imgUrl).show("slow");
 
-                    console.log(curPos, idx);
                 },
                 getCurIdx:function(){
                     return (0 - curPos) / itemWidth;
