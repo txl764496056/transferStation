@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-router</title>
+</head>
+<body>
+	<div id="app">
+		<router-link to="/tab1">tab1</router-link>
+		<router-link to="/tab2">tab2</router-link>
+		<router-link to="/tab3">tab3</router-link>
+		<button @click="handleChnage">跳转到tab1</button>
+		<router-view></router-view>
+	</div>
+	<script src="js/vue.min.js"></script>
+	<script src="js/vue-router.min.js"></script>
+	<script>
+
+		var tab1 = {
+			template:"<div>tab1的内容</div>"
+		};
+		var tab2 = {
+			template:"<div>tab2的内容</div>"
+		};
+		var tab3 = {
+			template:"<div>tab3的内容</div>"
+		};
+
+		var router = new VueRouter({
+			routes:[
+				{
+					path:"/tab1",
+					name:"tab1",
+					meta:{
+						title:"tab1"
+					},
+					component:tab1
+				},
+				{
+					path:"/tab2",
+					name:"tab2",
+					meta:{
+						title:"tab2"
+					},
+					component:tab2
+				},
+				{
+					path:"/tab3",
+					name:"tab3",
+					meta:{
+						title:"tab3"
+					},
+					component:tab3
+				}
+			]
+		});
+		
+		// 改变网页标题
+		router.beforeEach(function(to,from,next){
+			window.document.title=to.meta.title;
+			next();
+		});
+
+		var app = new Vue({
+			el:"#app",
+			router:router,
+			methods:{
+				handleChnage:function(){
+					this.$router.push("/tab1");
+				}
+			}
+		});
+	</script>
+</body>
+</html>
