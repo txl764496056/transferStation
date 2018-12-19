@@ -12,7 +12,7 @@
 ></script>
 <style>
 	button{display:block;background-color:#fff;font-size:30px;}
-    ul li span{width:132px;}
+    ul li span{width:132px;display:inline-block;}
 </style>
 </head>
 
@@ -36,7 +36,7 @@
                 <li><img src="pic/3.png"></li>
                 <li><img src="pic/4.png"></li>
                 <li><img src="pic/5.png"></li> -->
-                <li v-for="(item,index) in lotteryList" :key="index" v-if="index<5">
+                <li v-for="(item,index) in lotteryList" :key="index" v-if="index<7">
                     <span>{{item.realname}}</span>
                 </li>
             </ul>
@@ -79,6 +79,7 @@
 			el:"#lottery",
 			data:{
 				lotteryList:[],
+                first:true
 			},
 			created:function(){
               let _this = this;
@@ -102,17 +103,59 @@
 				init:function(){
                     $content        = $("#lottery-container ul"), //所有列表项的容器
                     $item          = $("#lottery-container ul li"); //列表单项
-                    console.log($item);
-                    // itemCount       = $item.size(); //单项大小
-                    // $content.append($content.html()); //复制所有列表项插入至$content的后面（如列表项是5条，则复制后就是10条);
+                    itemCount       = $item.size(); //单项大小
+                    $content.append($content.html()); //复制所有列表项插入至$content的后面（如列表项是5条，则复制后就是10条);
                 },
                 start:function(){
                     let _this = this;
-                    // _this.
-                    // _this.init();
+
+                    clearInterval(timer);
+
+                    if(_this.first){
+                        _this.init();
+                        _this.first = false;
+                        console.log("djfkdjfkd") ;
+                    }
+
+                    timer = setInterval(function() {
+
+                      curPos = parseInt($content.css("left")) | 0; //列表项容器left值
+                      curPos -= itemWidth / 2; //每次想左滑动itemWidth/2的距离，设置left值实现左滑动效果
+
+                      //列表有2组，当curPos< 0-(一组列表总宽度)，curPos=0,实现无缝滑动,
+                      // 当第2组列表项刚好进入可是区域,也就是第2组列表项第一项左边距是0时(ul的left= -itemWidth * itemCount)，
+                      // 将第一组列表的左边距设置0（此时就是ul的left=0）
+                      (curPos < 0 - itemWidth * itemCount) && (curPos = 0); 
+
+                      $content.css("left", curPos);
+
+                    }, 50);
 
                 },
                 stop:function(){
+
+                    clearInterval(timer);
+                    timer = null;
+
+                    (curPos % itemWidth == 0 - itemWidth / 2) && (curPos = curPos - itemWidth / 2);
+
+                    // var selected  = _this.getCurIdx();
+
+                    // _this.setCurIdx(selected);
+                },
+                setCurIdx:function(){
+                    curPos = (0 - idx) * itemWidth;
+
+                    var $items = $("#lottery li img"),
+                        imgUrl = $items.eq(idx + 3).attr("src");
+
+                    $content.css("left", curPos);
+                    // $hero.attr("src", imgUrl).show("slow");
+
+                    console.log(curPos, idx);
+                },
+                getCurIdx:function(){
+                    return (0 - curPos) / itemWidth;
                 }
 			}
 		})
